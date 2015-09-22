@@ -1,3 +1,3 @@
-Pipeline-validate-js
+## Pipeline-validate-js
 
-Pipeline that allows you to validate the js files within your project. 
+Gulp Pipeline that allows you to validate the js files within your project. It uses JSHint and JSCS to complete the tasks.
