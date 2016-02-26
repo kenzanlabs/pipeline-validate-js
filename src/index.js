@@ -1,7 +1,7 @@
 'use strict';
 
 var args = require('yargs').argv;
-var plugins = require('gulp-load-plugins')({lazy: true});
+var plugins = require('gulp-load-plugins')({ lazy: true });
 var fs = require('fs');
 var handyman = require('pipeline-handyman');
 var path = require('path');
@@ -72,11 +72,11 @@ function validatePipeline(options) {
 function validateJSHint() {
   handyman.log('Validating js with JSHInt and JSCS');
   return lazypipe()
-    .pipe(function() {
+    .pipe(function () {
       return plugins.if(args.verbose, plugins.print());
     })
     .pipe(jsValidationCombiner)
-    .pipe(function() {
+    .pipe(function () {
       return plugins.if(!config.disableJSCS, plugins.jscsStylish.combineWithHintResults());
     })
     .pipe(plugins.jshint.reporter, 'jshint-stylish')
