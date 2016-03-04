@@ -10,7 +10,7 @@ var config = {
   ]
 };
 
-gulp.task('build', function() {
+gulp.task('build', function () {
   return gulp
     .src(config.files)
     .pipe(validatePipeline.validateJS());
