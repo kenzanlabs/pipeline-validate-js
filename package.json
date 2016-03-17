@@ -42,7 +42,7 @@
   "dependencies": {
     "chai": "3.2.0",
     "gulp": "3.9.0",
-    "gulp-eslint": "1.0.0",
+    "gulp-eslint": "2.0.0",
     "gulp-if": "1.2.5",
     "gulp-jscs": "2.0.0",
     "gulp-jscs-stylish": "1.1.2",
@@ -54,7 +54,6 @@
     "lodash": "3.10.1",
     "mocha": "2.3.2",
     "pipeline-handyman": "0.3.0",
-    "sinon": "1.17.3",
-    "yargs": "4.3.1"
+    "sinon": "1.17.3"
   }
 }

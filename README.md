@@ -9,13 +9,13 @@
 
 # Overview
 
-Gulp Pipeline that allows you to validate the js files within your project. It defines an object that contains a 
-validateJS() function. The function will use ESLint to complete the task, with an option to enable JSCS.
+Gulp Pipeline that allows you to validate the js files within your project. This pipeline is opinionated to company specs. It defines an object that contains a 
+validateJS() function. The function will use ESLint to complete the task.
 
 
 This pipeline also offers the possibility of using personalized lint rules in other modules. If you'd like to use other 
-rules within your project you can define `.jscs` or a `.eslintrc` file. These files should be in the 
-root folder of the project. This pipeline will prioritize your rules over the default configurations.
+rules within your project you can define a `.eslintrc` file. These files should be in the 
+root folder of the project. You can also pass in a file path as a parameter 'src/.eslitrcCustom'. This pipeline will prioritize your rules over the default configurations.
 
 **NOTE: as this project is still pre 1.0.0, it is subject to possible backwards incompatible changes as it matures.**
 
@@ -40,6 +40,18 @@ gulp.task('default', function() {
     .src(files)
     .pipe(validatePipeline.validateJS({ecmaversion: 4}));
 });
+
+gulp.task('default', function() {
+  return gulp
+    .src(files)
+    .pipe(validatePipeline.validateJS('./src/.eslitrcCustom'));
+});
+
+gulp.task('default', function() {
+  return gulp
+    .src(files)
+    .pipe(validatePipeline.validateJS({"no-console": 0}));
+});
 ```
 
 ## Options
@@ -47,21 +59,15 @@ gulp.task('default', function() {
 Pipeline options:
 * _config_ -> Object that contains the configuration.
 
-    + __config.disableJSCS:__ If _true_ doesn't validate the files using `jscsrc`. You might want to disable JSCS if working on a legacy project. Otherwise this option should _false_.
-
-    + __config.parseOptions.ecmaVersion:__ Sets the ecmaScript version to be linted, set to '5' by default.
+    + __pipelineConfig.parseOptions.ecmaVersion:__ Sets the ecmaScript version to be linted, set to '5' by default.
 
 
   Default:
   ```javascript
-  config = {
-    disableJSCS: false,
+  pipelineCconfig = {
     parseOptions: {
       ecmaVersion: 5
     },
-    reporter: {
-      verbose: true
-    }
   }
   ```  
 
