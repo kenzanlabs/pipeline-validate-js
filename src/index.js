@@ -21,10 +21,9 @@ module.exports = {
         } else {
           customConfig = resolveConfigFile(options);
           origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
-          
+
           esLintConfig = handyman.mergeConfig(dest, origin);
         }
-        handyman.log('Validading js with ESlint ecmaScript5');
       } else {
         handyman.log('Validading js with ESlint ecmaScript5, ** Options not valid **');
       }
@@ -65,5 +64,6 @@ function validateES() {
     .pipe(plugins.eslint.format)
     .pipe(plugins.eslint.failOnError);
 
+  handyman.log('Validading js with ESlint ecmaScript5');
   return stream();
 }

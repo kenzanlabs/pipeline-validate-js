@@ -8,7 +8,6 @@ var gulp = require('gulp');
 describe('pipeline-validateJS', function(){
   it('should return a object', function () {
     (typeof validatePipeline).should.equal('object');
-    console.log(validatePipeline)
   });
 
   it('should contain a validateJS method', function(){
@@ -20,11 +19,13 @@ describe('pipeline-validateJS', function(){
 
     it('should return an object', function(){
       var stream = validatePipeline.validateJS();
+
       (typeof stream).should.equal('object');
     });
 
     describe('validateJS log outputs', function(){
       var sandbox, spy;
+
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
         spy = sandbox.spy(handyman, 'log');
@@ -34,31 +35,34 @@ describe('pipeline-validateJS', function(){
         sandbox.restore();
       });
 
-      it("should test validateJS() with no options", function() {
+      it('should test validateJS() with no options', function() {
         validatePipeline.validateJS();
-        (spy.args[0][0]).should.equal('Validating js version 5 with ESlint');
+        (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5');
       });
 
-      it("should test validateJS() with invalid options", function() {
+      it('should test validateJS() with invalid options, number', function() {
         validatePipeline.validateJS(234);
         (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5, ** Options not valid **');
       });
+      
+      it('should test validateJS() with invalid options, array', function() {
+        validatePipeline.validateJS(["semi", 1]);
+        (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5, ** Options not valid **');
+      });
 
-      it("should test validateJS() with an invalid file path as an  option", function() {
+      it('should test validateJS() with an invalid file path as an  option', function() {
         var fn = function(){ validatePipeline.validateJS('.eslintrc1'); };
 
         (fn).should.throw();
       });
 
-      it("should test validateJS() with ecmaVersion options", function() {
-        validatePipeline.validateJS({ecmaVersion: 5});
-        (spy.args[0][0]).should.equal('Validating js version 5 with ESlint');
+      it('should test validateJS() with ecmaVersion options', function() {
+        //this code throws error because the ecmaVersion is not suposed  to be applien inside of rules object
+        var fn = function (){validatePipeline.validateJS({ecmaVersion: 6})};
+
+        (fn).should.throw();
       });
 
-      it("should test validateJS() with not supported ecmaVersion options", function() {
-        validatePipeline.validateJS({ecmaVersion: 7});
-        (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5, ** ecmaVersion 7 is not supported! **');
-      });
-    })
+    });
   });
 });
