@@ -1,40 +1,45 @@
 'use strict';
 
 var plugins = require('gulp-load-plugins')({ lazy: true }),
-    fs = require('fs'),
-    handyman = require('pipeline-handyman'),
-    path = require('path'),
-    lazypipe = require('lazypipe'),
-    esLintConfig = resolveConfigFile('.eslintrc');
+  fs = require('fs'),
+  handyman = require('pipeline-handyman'),
+  path = require('path'),
+  lazypipe = require('lazypipe'),
+  esLintConfig = resolveConfigFile('.eslintrc');
 
 module.exports = {
   validateJS: function (options) {
-    var dest = JSON.parse(fs.readFileSync(esLintConfig, 'utf8')),
-        customConfig, origin, rules;
+    var defaultConfig = JSON.parse(fs.readFileSync(esLintConfig, 'utf8')),
+        optionType = typeof options,
+        customConfig, config, rules;
 
     if (options) {
-      if (typeof options === 'object' && !Array.isArray(options) || typeof options === 'string') {
-        if (typeof options === 'object') {
-          rules = { rules: options };
+      switch (true) {
+        case optionType === 'object' && !Array.isArray(options):
+          rules = {rules: options};
+          esLintConfig = handyman.mergeConfig(defaultConfig, rules);
+          break;
 
-          esLintConfig = handyman.mergeConfig(dest, rules);
-        } else {
+        case optionType === 'string':
           customConfig = resolveConfigFile(options);
-          origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
+          config = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
 
-          esLintConfig = handyman.mergeConfig(dest, origin);
-        }
-      } else {
-        handyman.log('Validading js with ESlint ecmaScript5, ** Options not valid **');
+          esLintConfig = handyman.mergeConfig(defaultConfig, config);
+          break;
+
+        default:
+          handyman.log('Validading js with ESlint ecmaScript5, ** Options not valid **');
+          break;
       }
     }
+
     return validateES();
   }
 };
 
 function resolveConfigFile(fileName) {
   var configFilesPathUser = path.resolve(process.cwd(), fileName),
-      configFilesPathDefault = __dirname.substring(0, __dirname.lastIndexOf('/'));
+    configFilesPathDefault = __dirname.substring(0, __dirname.lastIndexOf('/'));
 
   configFilesPathDefault = path.resolve(configFilesPathDefault, fileName);
 
