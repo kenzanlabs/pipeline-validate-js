@@ -38,7 +38,7 @@ gulp.task('lint', function() {
     .pipe(validatePipeline.validateJS());
 });
 
-gulp.task('test', ['lint'], function() {
+gulp.task('build', ['lint'], function() {
   return gulp
     .src(validateConfig.test.files)
     .pipe(testPipeline.test());
