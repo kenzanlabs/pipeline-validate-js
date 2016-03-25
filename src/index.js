@@ -1,17 +1,32 @@
 'use strict';
 
+<<<<<<< HEAD
 var plugins = require('gulp-load-plugins')({ lazy: true });
+=======
+var eslint = require('gulp-eslint');
+>>>>>>> 9f61d5728960b436cfe33bb3f21ea79f579d7967
 var fs = require('fs');
 var handyman = require('pipeline-handyman');
 var path = require('path');
 var lazypipe = require('lazypipe');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9f61d5728960b436cfe33bb3f21ea79f579d7967
 var esLintConfig = resolveConfigFile('.eslintrc');
 
 module.exports = {
   validateJS: function (options) {
+<<<<<<< HEAD
     var defaultConfig = JSON.parse(fs.readFileSync(esLintConfig, 'utf8'));
     var optionType = typeof options;
     var customConfig, config, rules;
+=======
+    var dest = JSON.parse(fs.readFileSync(esLintConfig, 'utf8'));
+    var customConfig = {};
+    var origin = {};
+    var rules = {};
+>>>>>>> 9f61d5728960b436cfe33bb3f21ea79f579d7967
 
     if (options) {
       if (optionType === 'object' && !Array.isArray(options)) {
@@ -58,9 +73,9 @@ function existsSync(filename) {
 
 function validateES() {
   var stream = lazypipe()
-    .pipe(plugins.eslint, esLintConfig)
-    .pipe(plugins.eslint.format)
-    .pipe(plugins.eslint.failOnError);
+    .pipe(eslint, esLintConfig)
+    .pipe(eslint.format)
+    .pipe(eslint.failOnError);
 
   handyman.log('Validading js with ESlint ecmaScript5');
   return stream();

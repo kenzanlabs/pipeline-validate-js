@@ -1,50 +1,51 @@
 'use strict';
-var should = require('chai').should();
-var sinon = require('sinon');
-var handyman = require('pipeline-handyman');
-var validatePipeline =  require('../src/index.js');
-var gulp = require('gulp');
 
-describe('pipeline-validateJS', function(){
+var handyman = require('pipeline-handyman');
+var sinon = require('sinon');
+var validatePipeline = require('../src/index.js');
+
+describe('pipeline-validateJS', function() {
+
   it('should return a object', function () {
     (typeof validatePipeline).should.equal('object');
   });
 
-  it('should contain a validateJS method', function(){
-    (validatePipeline.validateJS).should.exist;
-    (typeof validatePipeline.validateJS).should.equal('function');
+  it('should contain a validateJS method', function() {
+    validatePipeline.validateJS.should.exist;
+    typeof validatePipeline.validateJS.should.equal('function');
   });
 
-  describe('validateJS method', function (){
+  describe('validateJS method', function () {
 
-    it('should return an object', function(){
+    it('should return an object', function() {
       var stream = validatePipeline.validateJS();
 
       (typeof stream).should.equal('object');
     });
 
-    describe('validateJS log outputs', function(){
-      var sandbox, spy;
+    describe('validateJS log outputs', function() {
+      var sandbox = {};
+      var spy = {};
 
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
         spy = sandbox.spy(handyman, 'log');
       });
 
-      afterEach(function(){
+      afterEach(function() {
         sandbox.restore();
       });
 
       it('should test validateJS() with no options', function() {
         validatePipeline.validateJS();
-        (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5');
+        spy.args[0][0].should.equal('Validating js version 5 with ESlint');
       });
 
-      it('should test validateJS() with invalid options, number', function() {
+      it('should test validateJS() with invalid options', function() {
         validatePipeline.validateJS(234);
-        (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5, ** Options not valid **');
+        spy.args[0][0].should.equal('Validading js with ESlint ecmaScript5, ** Options not valid **');
       });
-
+      
       it('should test validateJS() with invalid options, array', function() {
         validatePipeline.validateJS(["semi", 1]);
         (spy.args[0][0]).should.equal('Validading js with ESlint ecmaScript5, ** Options not valid **');

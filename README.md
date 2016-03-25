@@ -5,20 +5,28 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-js| Pipeline to validate js files | 0.3.2 |
+| pipeline-validate-js| Pipeline to validate js files | 1.0.0-rc |
 
 # Overview
 
-Gulp Pipeline that allows you to validate the js files within your project. The company favors the style used by Airbnb, as well as adds its own style rules. This pipeline is opinionated to company specs. It defines an object that contains a 
+Gulp Pipeline that allows you to validate the js files within your project. The company favors the style used by Airbnb, 
+as well as adds its own style rules. This pipeline is opinionated to company specs. It defines an object that contains a 
 validateJS() function. The function will use ESLint to complete the task.
 
-
 This pipeline also offers the possibility of using personalized lint rules in other modules. If you'd like to use other 
-rules within your project you can define a `.eslintrc` file. These files should be in the 
-root folder of the project. You can also pass in a file path as a parameter 'src/.eslitrcCustom', or pass in an object with rules {'no-console: 0'}. 
-This pipeline will prioritize your rules over the default configurations.
+rules within your project you can define a `.eslintrc` file. These files should be in the root folder of the project. 
+You can also pass in a file path as a parameter 'src/.eslitrcCustom', or pass in an object with rules 
+`{'no-console: 0'}`. This pipeline will prioritize your rules over the default configuration.
 
-**NOTE: as this project is still pre 1.0.0, it is subject to possible backwards incompatible changes as it matures.**
+In addition, a fixture has been provided in `test/fixtures/`, of Twitter [Bootstrap][] [JS][], linted according to the rules.
+As changes are presented to the default ruleset, the rules will be reflected in this file as well, for easy 
+visualiztion of rule set changes.
+
+[Bootstrap][]: http://getbootstrap.com/
+[JS][]: https://github.com/twbs/bootstrap/blob/v3.3.6/dist/js/bootstrap.js
+
+**NOTE: this project is now in 1.0.0 release candidate stage.  1.0.0-rc tags will be published to NPM to allow 
+developers to review and provided feedback.**
 
 ## Install
 
