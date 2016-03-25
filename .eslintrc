@@ -80,7 +80,7 @@
 
     "no-catch-shadow": 1,
     "no-delete-var": 1,
-    "no-unused-vars": 2,
+    "no-unused-vars": 1,
 
 
     "handle-callback-err": 1,
@@ -112,21 +112,14 @@
     "no-spaced-func": 1,
     "no-trailing-spaces": 0,
     "no-underscore-dangle": [1, { "allowAfterThis": true }],
-<<<<<<< HEAD
     "one-var": [1, {"uninitialized":"always",  "initialized":"never"}],
     "operator-assignment": 0,
     "operator-linebreak": 0,
     "padded-blocks": [1, {"switches":"always"}],
-=======
-    "one-var" : [2, "never"],
-    "operator-assignment": 0,
-    "operator-linebreak": 0,
-    "padded-blocks": [1, { "switches": "always" }],
->>>>>>> 9f61d5728960b436cfe33bb3f21ea79f579d7967
     "quote-props": [1, "consistent"],
     "quotes": [1, "single", "avoid-escape"],
     "semi-spacing": [1, {"before": false, "after": true}],
-    "semi": [2, "always"],
+    "semi": [1, "always"],
     "keyword-spacing": 1,
     "space-before-blocks": 1,
     "space-in-parens": 1,

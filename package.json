@@ -43,24 +43,12 @@
     "gulp": "3.9.0",
     "gulp-eslint": "2.0.0",
     "lazypipe": "1.0.1",
-<<<<<<< HEAD
     "lodash": "3.10.1",
     "mocha": "2.3.2",
     "pipeline-handyman": "1.0.0",
     "sinon": "1.17.3"
   },
   "devDependencies": {
-    "pipeline-test-node": "^0.4.1"
-=======
-    "pipeline-handyman": "1.0.0"
-  },
-  "devDependencies": {
-    "chai": "3.2.0",
-    "chai-spies": "0.7.1",
-    "gulp-mocha": "2.2.0",
-    "pipeline-test-node": "0.4.1",
-    "sinon": "1.17.3",
-    "sinon-chai": "2.8.0"
->>>>>>> 9f61d5728960b436cfe33bb3f21ea79f579d7967
+    "pipeline-test-node": "0.4.1"
   }
 }

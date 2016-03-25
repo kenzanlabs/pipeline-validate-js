@@ -12,7 +12,6 @@ describe('pipeline-validateJS', function() {
   });
 
   it('should contain a validateJS method', function() {
-
     pipeline.should.exist;
     (typeof pipeline).should.equal('function');
   });
