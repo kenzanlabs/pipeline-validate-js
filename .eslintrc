@@ -112,7 +112,7 @@
     "no-spaced-func": 2,
     "no-trailing-spaces": 0,
     "no-underscore-dangle": [2, { "allowAfterThis": true }],
-    "one-var": [2, {"uninitialized":"always",  "initialized":"never"}],
+    "one-var": [0, {"uninitialized":"always",  "initialized":"always"}],
     "operator-assignment": 0,
     "operator-linebreak": 0,
     "padded-blocks": [2, {"switches":"always"}],

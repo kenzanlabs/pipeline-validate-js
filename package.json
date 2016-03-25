@@ -40,16 +40,16 @@
   "analyze": true,
   "license": "Apache 2",
   "dependencies": {
-    "chai": "3.5.0",
-    "gulp": "3.9.0",
-    "gulp-eslint": "2.0.0",
     "lazypipe": "1.0.1",
-    "lodash": "3.10.1",
-    "mocha": "2.3.2",
     "pipeline-handyman": "1.0.0",
-    "sinon": "1.17.3"
+    "lodash": "3.10.1",
+    "gulp-eslint": "2.0.0"
   },
   "devDependencies": {
-    "pipeline-test-node": "0.4.1"
+    "chai": "3.5.0",
+    "sinon": "1.17.3",
+    "mocha": "2.3.2",
+    "pipeline-test-node": "0.4.1",
+    "gulp": "3.9.0"
   }
 }
