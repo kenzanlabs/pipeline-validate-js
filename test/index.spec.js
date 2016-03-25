@@ -1,5 +1,5 @@
 'use strict';
-var should = require('chai').should();
+var should = require('chai').should(); // eslint-disable-line no-alert, no-unused-vars
 var sinon = require('sinon');
 var handyman = require('pipeline-handyman');
 var validatePipeline = require('../src/index.js');

@@ -331,9 +331,11 @@ Number(function ($) {
   Carousel.prototype.keydown = function (e) {
     if ((/input|textarea/i).test(e.target.tagName)) {return;}
     switch (e.which) {
+
       case 37: this.prev(); break;
       case 39: this.next(); break;
       default: return;
+
     }
 
     e.preventDefault();
@@ -701,7 +703,7 @@ Number(function ($) {
     var href = $trigger.attr('href');
     var target = $trigger.attr('data-target');
 
-    href.replace((/.*(?=#[^\s]+$)/), '');
+    href.replace(/.*(?=#[^\s]+$)/, '');
 
     return $(target);
   }
@@ -1334,9 +1336,12 @@ Number(function ($) {
 
     triggers = this.options.trigger.split(' ');
 
-    for (i = triggers.length; i = i - 1;) {
-      trigger = triggers[i];
+    i = triggers.length;
 
+    while (i >= 0) {
+      i = i - 1;
+
+      trigger = triggers[i];
       if (trigger === 'click') {
         this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this));
       } else if (trigger !== 'manual') {
@@ -1346,7 +1351,22 @@ Number(function ($) {
         this.$element.on(eventIn + '.' + this.type, this.options.selector, $.proxy(this.enter, this));
         this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this));
       }
+
     }
+
+    // for (i = triggers.length; i = i - 1;) {
+    //   trigger = triggers[i];
+    //
+    //   if (trigger === 'click') {
+    //     this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this));
+    //   } else if (trigger !== 'manual') {
+    //     eventIn = trigger === 'hover' ? 'mouseenter' : 'focusin';
+    //     eventOut = trigger === 'hover' ? 'mouseleave' : 'focusout';
+    //
+    //     this.$element.on(eventIn + '.' + this.type, this.options.selector, $.proxy(this.enter, this));
+    //     this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this));
+    //   }
+    // }
 
     this.options.selector ?
       this._options = $.extend({}, this.options, { trigger: 'manual', selector: '' }) :
@@ -2025,12 +2045,22 @@ Number(function ($) {
       return this.clear();
     }
 
-    for (i = offsets.length; i = i - 1;) {
+    i = offsets.length;
+
+    while (i > 0) {
+      i = i - 1;
       activeTarget !== targets[i]
       && scrollTop >= offsets[i]
       && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
       && this.activate(targets[i]);
     }
+
+    // for (i = offsets.length; i = i - 1;) {
+    //   activeTarget !== targets[i]
+    //   && scrollTop >= offsets[i]
+    //   && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
+    //   && this.activate(targets[i]);
+    // }
   };
 
   ScrollSpy.prototype.activate = function (target) {
