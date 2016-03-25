@@ -55,5 +55,8 @@
     "mocha": "2.3.2",
     "pipeline-handyman": "1.0.0",
     "sinon": "1.17.3"
+  },
+  "devDependencies": {
+    "pipeline-test-node": "^0.4.1"
   }
 }

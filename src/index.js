@@ -1,35 +1,28 @@
 'use strict';
 
-var plugins = require('gulp-load-plugins')({ lazy: true }),
-  fs = require('fs'),
-  handyman = require('pipeline-handyman'),
-  path = require('path'),
-  lazypipe = require('lazypipe'),
-  esLintConfig = resolveConfigFile('.eslintrc');
+var plugins = require('gulp-load-plugins')({ lazy: true });
+var fs = require('fs');
+var handyman = require('pipeline-handyman');
+var path = require('path');
+var lazypipe = require('lazypipe');
+var esLintConfig = resolveConfigFile('.eslintrc');
 
 module.exports = {
   validateJS: function (options) {
-    var defaultConfig = JSON.parse(fs.readFileSync(esLintConfig, 'utf8')),
-        optionType = typeof options,
-        customConfig, config, rules;
+    var defaultConfig = JSON.parse(fs.readFileSync(esLintConfig, 'utf8'));
+    var optionType = typeof options;
+    var customConfig, config, rules;
 
     if (options) {
-      switch (true) {
-        case optionType === 'object' && !Array.isArray(options):
-          rules = {rules: options};
-          esLintConfig = handyman.mergeConfig(defaultConfig, rules);
-          break;
+      if (optionType === 'object' && !Array.isArray(options)) {
+        esLintConfig = handyman.mergeConfig(defaultConfig, options);
+      } else if (optionType === 'string') {
+        customConfig = resolveConfigFile(options);
+        config = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
 
-        case optionType === 'string':
-          customConfig = resolveConfigFile(options);
-          config = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
-
-          esLintConfig = handyman.mergeConfig(defaultConfig, config);
-          break;
-
-        default:
-          handyman.log('Validading js with ESlint ecmaScript5, ** Options not valid **');
-          break;
+        esLintConfig = handyman.mergeConfig(defaultConfig, config);
+      } else {
+        handyman.log('Validading js with ESlint ecmaScript5, ** Options not valid **');
       }
     }
 
@@ -38,8 +31,8 @@ module.exports = {
 };
 
 function resolveConfigFile(fileName) {
-  var configFilesPathUser = path.resolve(process.cwd(), fileName),
-    configFilesPathDefault = __dirname.substring(0, __dirname.lastIndexOf('/'));
+  var configFilesPathUser = path.resolve(process.cwd(), fileName);
+  var configFilesPathDefault = __dirname.substring(0, __dirname.lastIndexOf('/'));
 
   configFilesPathDefault = path.resolve(configFilesPathDefault, fileName);
 
