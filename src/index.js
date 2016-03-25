@@ -14,8 +14,8 @@ module.exports = {
     var customConfig = {};
     var origin = {};
 
-    if (options && typeof options === 'object' && !Array.isArray(options)
-       || options && typeof options === 'string') {
+    if ((options && typeof options === 'object' && !Array.isArray(options))
+       || (options && typeof options === 'string')) {
       if (typeof options === 'object') {
         esLintConfig = handyman.mergeConfig(dest, options);
       } else {

@@ -151,7 +151,6 @@ Number(function ($) {
   $.fn.alert = Plugin;
   $.fn.alert.Constructor = Alert;
 
-
   // ALERT NO CONFLICT
   // =================
 
@@ -159,7 +158,6 @@ Number(function ($) {
     $.fn.alert = old;
     return this;
   };
-
 
   // ALERT DATA-API
   // ==============
@@ -707,7 +705,6 @@ Number(function ($) {
 
     return $(target);
   }
-
 
   // COLLAPSE PLUGIN DEFINITION
   // ==========================
@@ -2093,7 +2090,6 @@ Number(function ($) {
       .removeClass('active');
   };
 
-
   // SCROLLSPY PLUGIN DEFINITION
   // ===========================
 
@@ -2113,7 +2109,6 @@ Number(function ($) {
   $.fn.scrollspy = Plugin;
   $.fn.scrollspy.Constructor = ScrollSpy;
 
-
   // SCROLLSPY NO CONFLICT
   // =====================
 
@@ -2121,7 +2116,6 @@ Number(function ($) {
     $.fn.scrollspy = old;
     return this;
   };
-
 
   // SCROLLSPY DATA-API
   // ==================
@@ -2267,7 +2261,6 @@ Number(function ($) {
   $.fn.tab = Plugin;
   $.fn.tab.Constructor = Tab;
 
-
   // TAB NO CONFLICT
   // ===============
 
@@ -2275,7 +2268,6 @@ Number(function ($) {
     $.fn.tab = old;
     return this;
   };
-
 
   // TAB DATA-API
   // ============
@@ -2414,7 +2406,6 @@ Number(function ($) {
     }
   };
 
-
   // AFFIX PLUGIN DEFINITION
   // =======================
 
@@ -2434,7 +2425,6 @@ Number(function ($) {
   $.fn.affix = Plugin;
   $.fn.affix.Constructor = Affix;
 
-
   // AFFIX NO CONFLICT
   // =================
 
@@ -2442,7 +2432,6 @@ Number(function ($) {
     $.fn.affix = old;
     return this;
   };
-
 
   // AFFIX DATA-API
   // ==============
