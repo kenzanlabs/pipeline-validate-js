@@ -1,8 +1,10 @@
 'use strict';
-var should = require('chai').should(); // eslint-disable-line no-alert, no-unused-vars
-var sinon = require('sinon');
+var chai = require('chai');
 var handyman = require('pipeline-handyman');
+var sinon = require('sinon');
 var validatePipeline = require('../src/index.js');
+
+chai.should();
 
 describe('pipeline-validateJS', function() {
   var pipeline = validatePipeline.validateJS;
@@ -17,7 +19,6 @@ describe('pipeline-validateJS', function() {
   });
 
   describe('validateJS method', function () {
-
     it('should return an object', function() {
       var stream = validatePipeline.validateJS();
 
