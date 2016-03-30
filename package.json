@@ -42,7 +42,7 @@
   "dependencies": {
     "lazypipe": "1.0.1",
     "lodash": "3.10.1",
-    "pipeline-handyman": "1.0.0",
+    "pipeline-handyman": "1.0.0"
   },
   "devDependencies": {
     "chai": "3.5.0",
