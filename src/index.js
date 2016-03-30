@@ -22,18 +22,21 @@ function checkOptions(options) {
   var customConfig = {};
   var origin = {};
 
-  if ((options && typeof options === 'object' && !Array.isArray(options))
-    || (options && typeof options === 'string')) {
-    if (typeof options === 'object') {
-      esLintConfig = handyman.mergeConfig(dest, options);
-    } else {
-      customConfig = resolveConfigFile(options);
-      origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
+  if (options && isObj(options)) {
+    esLintConfig = handyman.mergeConfig(dest, options);
+  } else if (options && typeof options === 'string') {
+    customConfig = resolveConfigFile(options);
+    origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
 
-      esLintConfig = handyman.mergeConfig(dest, origin);
-    }
+    esLintConfig = handyman.mergeConfig(dest, origin);
   } else if (options) {
     handyman.log('** Options not valid **');
+  }
+}
+
+function isObj(entry) {
+  if (typeof entry === 'object' && !Array.isArray(entry)) {
+    return true;
   }
 }
 
