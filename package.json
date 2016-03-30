@@ -40,6 +40,7 @@
   "analyze": true,
   "license": "Apache 2",
   "dependencies": {
+    "gulp-eslint": "2.0.0",
     "lazypipe": "1.0.1",
     "lodash": "3.10.1",
     "pipeline-handyman": "1.0.0"
