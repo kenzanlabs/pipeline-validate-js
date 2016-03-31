@@ -10,7 +10,7 @@ var testPipeline = require('pipeline-test-node')({ plugins: {
     includeUntested: true,
     reporters: ['text-summary'],
     thresholds: {
-      global: 78
+      global: 75
     }
   }
 }});
