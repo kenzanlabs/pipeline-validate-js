@@ -94,10 +94,10 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with valid url as options', function() {
-        msg = 'Linting using /Users/RobertoHernandez/WebstormProjects/kenzanGit/keystone/pipeline-validate-js/test/fixtures/.eslintrc3';
+        msg = 'pipeline-validate-js/test/fixtures/.eslintrc3';
         pipeline('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith(msg);
+        spy.should.have.been.calledWith(sinon.match(msg));
       });
 
     });
