@@ -60,6 +60,7 @@ describe('pipeline-validateJS', function() {
       var sandbox = {};
       var spy = {};
       var msg;
+      var url;
 
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
@@ -94,8 +95,8 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with valid url as options', function() {
-        var url ='./test/fixtures/.eslintrc3';
-        msg = 'Linting using '+ url;
+        url = './test/fixtures/.eslintrc3';
+        msg = 'Linting using ' + url;
         pipeline('./test/fixtures/.eslintrc3');
 
         spy.should.have.been.calledWith(sinon.match(msg));
