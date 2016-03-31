@@ -1,0 +1,8 @@
+
+{
+  "rules": {
+    "no-case-declarations" : 0,
+    "dot-location": 2,
+    "eqeqeq": 0
+  }
+}

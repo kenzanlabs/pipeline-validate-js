@@ -3,14 +3,14 @@
 var eslint = require('gulp-eslint');
 var fs = require('fs');
 var handyman = require('pipeline-handyman');
-var path = require('path');
 var lazypipe = require('lazypipe');
+var path = require('path');
 
 var esLintConfig = resolveConfigFile('.eslintrc');
 
 module.exports = {
   validateJS: function (options) {
-    checkOptions(options);
+    if (options) {checkOptions(options);}
     handyman.log('Validading js with ESlint');
 
     return validateES();
@@ -27,15 +27,15 @@ function checkOptions(options) {
   } else if (options && typeof options === 'string') {
     customConfig = resolveConfigFile(options);
     origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
-
     esLintConfig = handyman.mergeConfig(dest, origin);
-  } else if (options) {
+  } else {
     handyman.log('** Options not valid **');
   }
 }
 
 function isObj(entry) {
   if (typeof entry === 'object' && !Array.isArray(entry)) {
+    handyman.log('Custom configuration being applied');
     return true;
   }
 }
@@ -53,6 +53,7 @@ function existsSync(filename) {
   if (typeof fs.accessSync === 'function') {
     try {
       fs.accessSync(filename);
+      handyman.log('Linting using ' + filename);
       return true;
     } catch (error) {
       if (typeof error !== 'object' || error.code !== 'ENOENT') {
