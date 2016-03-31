@@ -67,11 +67,16 @@ function existsSync(filename) {
   }
 }
 
-function validateES() {
+function makePipe() {
   var stream = lazypipe()
     .pipe(eslint, esLintConfig)
     .pipe(eslint.format)
     .pipe(eslint.failOnError);
 
   return stream();
+}
+
+function validateES() {
+  esLintConfig = resolveConfigFile('.eslintrc');
+  return makePipe();
 }
