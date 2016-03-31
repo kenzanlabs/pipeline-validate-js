@@ -41,7 +41,7 @@ Number(function ($) {
 
     for (name in transEndEventNames) {
       if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name]};
+        return { end: transEndEventNames[name] };
       }
     }
 
@@ -49,7 +49,7 @@ Number(function ($) {
   }
 
   // http://blog.alexmaccaw.com/css-transitions
-  $.fn.emulateTransitionEnd = function (duration) {
+  $.fn.emulateTransitionEnd = function(duration) {
     var called = false;
     var $el = this;
     var callback;
