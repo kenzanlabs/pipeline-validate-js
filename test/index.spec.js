@@ -1,7 +1,7 @@
 'use strict';
 var chai = require('chai');
 var handyman = require('pipeline-handyman');
-var isStream = require('isStream');
+var isStream = require('isstream');
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 var validatePipeline = require('../src/index.js');
@@ -29,7 +29,7 @@ describe('pipeline-validateJS', function() {
     var stream;
 
     beforeEach(function() {
-      stream = function() {return validatePipeline.validateJS();};
+      stream = function() {return pipeline();};
     });
 
     it('should return a stream', function() {
@@ -50,7 +50,7 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with no options', function() {
-        validatePipeline.validateJS();
+        pipeline();
         spy.should.have.been.calledWith('Validading js with ESlint');
       });
     });
@@ -71,30 +71,30 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with invalid options, number', function() {
-        validatePipeline.validateJS(234);
+        pipeline(234);
         spy.should.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with invalid options, array', function() {
-        validatePipeline.validateJS(['semi', 1]);
+        pipeline(['semi', 1]);
         spy.should.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with an invalid file path as an  option', function() {
-        var fn = function() { validatePipeline.validateJS('.eslintrc1'); };
+        var fn = function() { pipeline('.eslintrc1'); };
 
         fn.should.throw();
       });
 
       xit('should test validateJS() with valid url as options', function() {
         msg = 'Linting using /Users/RobertoHernandez/WebstormProjects/kenzanGit/keystone/pipeline-validate-js/.eslintrc3';
-        validatePipeline.validateJS('./test/fixtures/.eslintrc3');
+        pipeline('./test/fixtures/.eslintrc3');
 
         spy.should.have.been.calledWith(msg);
       });
 
       it('should test validateJS() with valid object options', function() {
-        validatePipeline.validateJS({ rules: { 'no-empty': 0 }});
+        pipeline({ rules: { 'no-empty': 0 }});
 
         spy.should.have.been.calledWith('Custom configuration being applied');
       });
