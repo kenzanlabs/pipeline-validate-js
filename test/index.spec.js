@@ -86,21 +86,42 @@ describe('pipeline-validateJS', function() {
         fn.should.throw();
       });
 
-      it('should test validateJS() with valid url as options', function() {
+      xit('should test validateJS() with valid url as options', function() {
         msg = 'Linting using /Users/RobertoHernandez/WebstormProjects/kenzanGit/keystone/pipeline-validate-js/.eslintrc3';
         pipeline('./test/fixtures/.eslintrc3');
         handyman.log(msg);
 
-        spy.should.have.been.called;
-        // spy.should.have.been.calledWith(msg);
+        spy.should.have.been.calledWith(msg);
       });
 
-      xit('should test validateJS() with valid object options', function() {
-        pipeline({ rules: { 'no-empty': 0 }});
+      it('should test validateJS() with valid object as options', function() {
+        true.should.equal(true);
+        validatePipeline.validateJS({'rules': {'no-case-declarations': 2}});
 
         spy.should.have.been.calledWith('Custom configuration being applied');
       });
+
     });
   });
-
 });
+
+// xdescribe('TEST', function () {
+//   var sandbox = {};
+//   var spy = {};
+//
+//   beforeEach(function() {
+//     sandbox = sinon.sandbox.create();
+//     spy = sandbox.spy(handyman, 'log');
+//   });
+//
+//   afterEach(function() {
+//     sandbox.restore();
+//   });
+//
+//   it('sdhould fail', function() {
+//     true.should.equal(true);
+//     validatePipeline.validateJS();
+//
+//     spy.should.have.been.calledWith('Custom configuration being applied');
+//   });
+// });
