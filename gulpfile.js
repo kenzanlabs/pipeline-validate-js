@@ -7,9 +7,10 @@ var testPipeline = require('pipeline-test-node')({ plugins: {
     reporter: 'spec'
   },
   istanbul: {
+    includeUntested: true,
     reporters: ['text-summary'],
     thresholds: {
-      global: 0
+      global: 75
     }
   }
 }});
