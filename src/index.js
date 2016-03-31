@@ -25,6 +25,7 @@ function checkOptions(options) {
   if (options && isObj(options)) {
     esLintConfig = handyman.mergeConfig(dest, options);
   } else if (options && typeof options === 'string') {
+    handyman.log('Linting using ' + options)
     customConfig = resolveConfigFile(options);
     origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
     esLintConfig = handyman.mergeConfig(dest, origin);

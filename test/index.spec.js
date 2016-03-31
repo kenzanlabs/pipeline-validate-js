@@ -94,7 +94,8 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with valid url as options', function() {
-        msg = 'pipeline-validate-js/test/fixtures/.eslintrc3';
+        var url ='./test/fixtures/.eslintrc3';
+        msg = 'Linting using '+ url;
         pipeline('./test/fixtures/.eslintrc3');
 
         spy.should.have.been.calledWith(sinon.match(msg));
@@ -103,4 +104,3 @@ describe('pipeline-validateJS', function() {
     });
   });
 });
-
