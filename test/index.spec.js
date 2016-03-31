@@ -99,6 +99,8 @@ describe('pipeline-validateJS', function() {
 
         spy.should.have.been.calledWith(msg);
       });
+
     });
   });
 });
+
