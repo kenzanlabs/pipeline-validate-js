@@ -27,7 +27,7 @@ var validateConfig = {
     files: [
       '*.js',
       './src/*.js',
-      './test/**/*.js', 
+      './test/**/*.js',
       '!./test/fixtures/bootstrap.js'
     ]
   }
