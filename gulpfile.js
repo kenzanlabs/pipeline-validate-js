@@ -10,7 +10,7 @@ var testPipeline = require('pipeline-test-node')({ plugins: {
     includeUntested: true,
     reporters: ['text-summary'],
     thresholds: {
-      global: 75
+      global: 90
     }
   }
 }});
@@ -27,7 +27,7 @@ var validateConfig = {
     files: [
       '*.js',
       './src/*.js',
-      './test/**/*.js',
+      './test/**/*.js', 
       '!./test/fixtures/bootstrap.js'
     ]
   }
