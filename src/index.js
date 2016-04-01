@@ -10,7 +10,7 @@ var esLintConfig = resolveConfigFile('.eslintrc');
 
 module.exports = {
   validateJS: function (options) {
-    var dest = JSON.parse(fs.readFileSync(esLintConfig, 'utf8'));
+    var dest = JSON.parse(fs.readFileSync(path.join(__dirname, '../.eslintrc'), 'utf8'));
     var customConfig = {};
     var origin = {};
     var rules = {};
@@ -24,7 +24,7 @@ module.exports = {
         } else {
           customConfig = resolveConfigFile(options);
           origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
-          
+
           esLintConfig = handyman.mergeConfig(dest, origin);
         }
         handyman.log('Validading js with ESlint ecmaScript5');
