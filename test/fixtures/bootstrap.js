@@ -1,4 +1,4 @@
-/* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
+  /* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -41,7 +41,7 @@ Number(function ($) {
 
     for (name in transEndEventNames) {
       if (el.style[name] !== undefined) {
-        return { end: transEndEventNames[name]};
+        return { end: transEndEventNames[name] };
       }
     }
 
@@ -330,10 +330,15 @@ Number(function ($) {
 
   Carousel.prototype.keydown = function (e) {
     if ((/input|textarea/i).test(e.target.tagName)) {return;}
+
     switch (e.which) {
+
       case 37: this.prev(); break;
+
       case 39: this.next(); break;
+
       default: return;
+
     }
 
     e.preventDefault();
@@ -701,7 +706,7 @@ Number(function ($) {
     var href = $trigger.attr('href');
     var target = $trigger.attr('data-target');
 
-    href.replace((/.*(?=#[^\s]+$)/), '');
+    href.replace(/.*(?=#[^\s]+$)/, '');
 
     return $(target);
   }
@@ -1334,7 +1339,7 @@ Number(function ($) {
 
     triggers = this.options.trigger.split(' ');
 
-    for (i = triggers.length; i = i - 1;) {
+    for (i = triggers.length; (i = i - 1);) {
       trigger = triggers[i];
 
       if (trigger === 'click') {
@@ -2025,7 +2030,7 @@ Number(function ($) {
       return this.clear();
     }
 
-    for (i = offsets.length; i = i - 1;) {
+    for (i = offsets.length; (i = i - 1);) {
       activeTarget !== targets[i]
       && scrollTop >= offsets[i]
       && (offsets[i + 1] === undefined || scrollTop < offsets[i + 1])
