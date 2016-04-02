@@ -1,4 +1,4 @@
-/* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
+https://github.com/kenzanlabs/pipeline-validate-js.git  /* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -328,10 +328,13 @@ Number(function ($) {
 
   Carousel.prototype.keydown = function (e) {
     if ((/input|textarea/i).test(e.target.tagName)) {return;}
+
     switch (e.which) {
 
       case 37: this.prev(); break;
+
       case 39: this.next(); break;
+
       default: return;
 
     }

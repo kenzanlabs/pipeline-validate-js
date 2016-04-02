@@ -26,6 +26,7 @@
     "no-extra-semi": 2,
     "no-func-assign": 2,
     "no-inner-declarations": 2,
+
     "no-invalid-regexp": 0,
     "no-irregular-whitespace": 0,
     "no-negated-in-lhs": 2,
