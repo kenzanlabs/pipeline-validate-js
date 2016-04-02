@@ -22,7 +22,7 @@ visualiztion of rule set changes.
 [source]: https://github.com/twbs/bootstrap/blob/v3.3.6/dist/js/bootstrap.js
 
 **NOTE: this project is now in a 1.0.0 release candidate stage.  1.0.0-rc tags will be published to NPM to allow 
-developers to review and provide feedback.**
+developers the chance to review and provide feedback.**
 
 ## Install
 
