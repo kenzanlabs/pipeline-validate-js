@@ -79,6 +79,7 @@ function makePipe() {
 
 function validateES() {
   var pipeline = makePipe();
+
   esLintConfig = resolveConfigFile('.eslintrc');
 
   return pipeline;

@@ -1,4 +1,4 @@
-https://github.com/kenzanlabs/pipeline-validate-js.git  /* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
+// htt//github.com/kenzanlabs/pipeline-validate-js.git  /* eslint new-cap: [2, {"capIsNewExceptions": ["Event"]}] */
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -115,7 +115,7 @@ Number(function ($) {
       $parent = $this.closest('.alert');
     }
 
-    $parent.trigger(e = $.Event('close.bs.alert'));
+    $parent.trigger(e = $.Event('close.bs.alert')); // eslint-disable-line
 
     if (e.isDefaultPrevented()) {return;}
 
@@ -421,7 +421,7 @@ Number(function ($) {
     if ($next.hasClass('active')) {return this.sliding = false;}
 
     relatedTarget = $next[0];
-    slideEvent = $.Event('slide.bs.carousel', {
+    slideEvent = $.Event('slide.bs.carousel', { // eslint-disable-line
       relatedTarget: relatedTarget,
       direction: direction
     });
@@ -438,7 +438,7 @@ Number(function ($) {
       $nextIndicator && $nextIndicator.addClass('active');
     }
 
-    slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }); // yes, "slid"
+    slidEvent = $.Event('slid.bs.carousel', { relatedTarget: relatedTarget, direction: direction }); // eslint-disable-line
     if ($.support.transition && this.$element.hasClass('slide')) {
       $next.addClass(type);
       $next[0].offsetWidth; // force reflow
@@ -593,7 +593,7 @@ Number(function ($) {
       if (activesData && activesData.transitioning) {return;}
     }
 
-    startEvent = $.Event('show.bs.collapse');
+    startEvent = $.Event('show.bs.collapse'); // eslint-disable-line
     this.$element.trigger(startEvent);
     if (startEvent.isDefaultPrevented()) {return;}
 
@@ -640,7 +640,7 @@ Number(function ($) {
 
     if (this.transitioning || !this.$element.hasClass('in')) {return;}
 
-    startEvent = $.Event('hide.bs.collapse');
+    startEvent = $.Event('hide.bs.collapse'); // eslint-disable-line
     this.$element.trigger(startEvent);
     if (startEvent.isDefaultPrevented()) {return;}
 
@@ -804,12 +804,12 @@ Number(function ($) {
 
       if (e && e.type === 'click' && (/input|textarea/i).test(e.target.tagName) && $.contains($parent[0], e.target)) {return;}
 
-      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget));
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget)); // eslint-disable-line
 
       if (e.isDefaultPrevented()) {return;}
 
       $this.attr('aria-expanded', 'false');
-      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget));
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget)); // eslint-disable-line
     });
   }
 
@@ -838,7 +838,7 @@ Number(function ($) {
       }
 
       relatedTarget = { relatedTarget: this };
-      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget));
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget)); // eslint-disable-line
 
       if (e.isDefaultPrevented()) {return;}
 
@@ -848,7 +848,7 @@ Number(function ($) {
 
       $parent
         .toggleClass('open')
-        .trigger($.Event('shown.bs.dropdown', relatedTarget));
+        .trigger($.Event('shown.bs.dropdown', relatedTarget)); // eslint-disable-line
     }
 
     return false;
@@ -981,7 +981,7 @@ Number(function ($) {
 
   Modal.prototype.show = function (_relatedTarget) {
     var that = this;
-    var e = $.Event('show.bs.modal', { relatedTarget: _relatedTarget });
+    var e = $.Event('show.bs.modal', { relatedTarget: _relatedTarget }); // eslint-disable-line
 
     this.$element.trigger(e);
 
@@ -1026,7 +1026,7 @@ Number(function ($) {
 
       that.enforceFocus();
 
-      e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget });
+      e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget }); // eslint-disable-line
 
       transition ?
         that.$dialog // wait for modal to slide in
@@ -1041,7 +1041,7 @@ Number(function ($) {
   Modal.prototype.hide = function (e) {
     if (e) {e.preventDefault();}
 
-    e = $.Event('hide.bs.modal');
+    e = $.Event('hide.bs.modal'); // eslint-disable-line
 
     this.$element.trigger(e);
 
@@ -1479,7 +1479,7 @@ Number(function ($) {
     var calculatedOffset = function() {};
     var complete = function() {};
     var orgPlacement = function() {};
-    var e = $.Event('show.bs.' + this.type);
+    var e = $.Event('show.bs.' + this.type); // eslint-disable-line
 
     if (this.hasContent() && this.enabled) {
       this.$element.trigger(e);
@@ -1628,7 +1628,7 @@ Number(function ($) {
   Tooltip.prototype.hide = function (callback) {
     var that = this;
     var $tip = $(this.$tip);
-    var e = $.Event('hide.bs.' + this.type);
+    var e = $.Event('hide.bs.' + this.type); // eslint-disable-line
 
     function complete() {
       if (that.hoverState !== 'in') {$tip.detach();}
@@ -2171,10 +2171,10 @@ Number(function ($) {
     if ($this.parent('li').hasClass('active')) {return;}
 
     $previous = $ul.find('.active:last a');
-    hideEvent = $.Event('hide.bs.tab', {
+    hideEvent = $.Event('hide.bs.tab', { // eslint-disable-line
       relatedTarget: $this[0]
     });
-    showEvent = $.Event('show.bs.tab', {
+    showEvent = $.Event('show.bs.tab', { // eslint-disable-line
       relatedTarget: $previous[0]
     });
 
@@ -2387,7 +2387,7 @@ Number(function ($) {
       if (this.unpin != null) {this.$element.css('top', '');}
 
       affixType = 'affix' + (affix ? '-' + affix : '');
-      e = $.Event(affixType + '.bs.affix');
+      e = $.Event(affixType + '.bs.affix'); // eslint-disable-line
 
       this.$element.trigger(e);
 
