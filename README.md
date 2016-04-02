@@ -5,71 +5,63 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-js| Pipeline to validate js files | 1.0.0-rc |
+| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.0-rc |
 
 # Overview
+This is a [Gulp][] Pipeline that allows you to validate the JS files within your project for syntax and style. As part of the [Keystone][] project for [Kenzan][], this pipeline is opinionated to promote best practices as favored by our organization. It defines a module that contains a validateJS() function that will use [ESLint][] to complete the task.
 
-Gulp Pipeline that allows you to validate the js files within your project. The company favors the style used by Airbnb, 
-as well as adds its own style rules. This pipeline is opinionated to company specs. It defines an object that contains a 
-validateJS() function. The function will use ESLint to complete the task.
-
-This pipeline also offers the possibility of using personalized lint rules in other modules. If you'd like to use other 
-rules within your project you can define a `.eslintrc` file. These files should be in the root folder of the project. 
-You can also pass in a file path as a parameter 'src/.eslitrcCustom', or pass in an object with rules 
-`{'no-console: 0'}`. This pipeline will prioritize your rules over the default configuration.
-
-In addition, a fixture has been provided in `test/fixtures/`, of Twitter [Bootstrap][] [JS][], linted according to the rules.
+A fixture has been provided in `test/fixtures/` of Twitter [Bootstrap][]'s [source][], linted according to the rules.
 As changes are presented to the default ruleset, the rules will be reflected in this file as well, for easy 
 visualiztion of rule set changes.
 
-[Bootstrap][]: http://getbootstrap.com/
-[JS][]: https://github.com/twbs/bootstrap/blob/v3.3.6/dist/js/bootstrap.js
+[Gulp]: http://gulpjs.com/
+[Keystone]: https://github.com/kenzanlabs/keystone
+[Kenzan]: http://kenzan.com/
+[ESLint]: http://eslint.org/
+[Bootstrap]: http://getbootstrap.com/
+[source]: https://github.com/twbs/bootstrap/blob/v3.3.6/dist/js/bootstrap.js
 
-**NOTE: this project is now in 1.0.0 release candidate stage.  1.0.0-rc tags will be published to NPM to allow 
-developers to review and provided feedback.**
+**NOTE: this project is now in a 1.0.0 release candidate stage.  1.0.0-rc tags will be published to NPM to allow 
+developers the chance to review and provide feedback.**
 
 ## Install
 
 `npm install pipeline-validate-js --save-dev`
 
 ## Usage
+In addition to the default rules established within this pipeline, there is support for using personalized linting rules. If you'd like to use other rules within your project you can define a `.eslintrc` file. You can also pass in a file path as a parameter or pass in an object with your custom rules.  This pipeline will merge your rules, favoring your rules over the default configuration.
+
 ```javascript
 var gulp = require('gulp');
 var validatePipeline = require('pipeline-validate-js');
 
-
 gulp.task('default', function() {
   return gulp
-    .src(files)
+    .src('src/**/*.js')
     .pipe(validatePipeline.validateJS());
 });
 
-
+//specify your own custom eslintrc, that gets merged into the default config
 gulp.task('default', function() {
   return gulp
-    .src(files)
-    .pipe(validatePipeline.validateJS('./src/.eslitrcCustom'));
+    .src('src/**/*.js')
+    .pipe(validatePipeline.validateJS('/some/path/.eslintrcCustom'));
 });
 
+//specify your own custom rules object, that gets merged into the default config
 gulp.task('default', function() {
   return gulp
-    .src(files)
+    .src('src/**/*.js')
     .pipe(validatePipeline.validateJS({"no-console": 0}));
-});
-
-gulp.task('default', function() {
-  return gulp
-    .src(files)
-    .pipe(validatePipeline.validateJS(config.rules);
 });
 ```
 
 ## Options
 
 Pipeline options:
-* _config_ -> Object that contains the configuration.
+* _config_ -> Object that contains the configuration.  It offers a 1:1 mapping with the format of an `eslintrc` file
 
-    + __pipelineConfig.parseOptions.ecmaVersion:__ Sets the ecmaScript version to be linted, set to '5' by default.
+    + parseOptions.ecmaVersion:__ Sets the ecmaScript version to be linted, set to '5' by default.
 
 
   Default:
@@ -77,7 +69,7 @@ Pipeline options:
   pipelineConfig = {
     parseOptions: {
       ecmaVersion: 5
-    },
+    }
   }
   ```  
 
