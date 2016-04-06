@@ -59,13 +59,10 @@ describe('pipeline-validateJS', function() {
     describe('ValidateJS Pipeline with options', function() {
       var sandbox = {};
       var spy = {};
-      var msg;
-      var url;
 
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
         spy = sandbox.spy(handyman, 'log');
-        msg = '';
       });
 
       afterEach(function() {
@@ -88,18 +85,16 @@ describe('pipeline-validateJS', function() {
         fn.should.throw();
       });
 
-      it('should test validateJS() with valid object options', function() {
-        pipeline({ 'rules': { 'no-empty': 0 }});
-
-        spy.should.have.been.calledWith('Custom configuration being applied');
-      });
-
       it('should test validateJS() with valid url as options', function() {
-        url = './test/fixtures/.eslintrc3';
-        msg = 'Linting using ' + url;
         pipeline('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith(sinon.match(msg));
+        spy.should.have.been.calledWith('Linting using custom file');
+      });
+
+      it('should test validateJS() with valid object as options', function() {
+        pipeline({rules: {'no-console': 0}});
+
+        spy.should.have.been.calledWith('Parsing Options');
       });
 
     });
