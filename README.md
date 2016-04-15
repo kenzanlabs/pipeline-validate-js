@@ -5,12 +5,12 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.0-rc |
+| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.0-rc1 |
 
 # Overview
-This is a [Gulp][] Pipeline that allows you to validate the JS files within your project for syntax and style. As 
+This is a [Gulp][] pipeline that allows a team to validate the JS files within their project for syntax and style. As 
 part of the [Keystone][] project for [Kenzan][], this pipeline is opinionated to promote best practices as favored by 
-our organization. It defines a module that contains a `validateJS()` method that will use [ESLint][] to complete the 
+the organization. It defines a module that contains a `validateJS` method that will use [ESLint][] to complete the 
 task.
 
 A fixture has been provided in `test/fixtures/` of Twitter [Bootstrap][]'s [source][], linted according to the rules.
