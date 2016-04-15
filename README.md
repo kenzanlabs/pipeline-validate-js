@@ -90,9 +90,11 @@ Pipeline options:
   }
   ```
 
+If options are invalid it will throw a reference error.
+
 ## Results
 
-This pipeline returns an object. This object receives a stream with the files to validate. You can call the _validteJS_
+This pipeline returns an object. This object receives a stream with the files to validate. You can call the _validateJS_
 method to run the validation. The method will report if any issues were found during validation. If no issues are
 present, it will return the stream.
 
