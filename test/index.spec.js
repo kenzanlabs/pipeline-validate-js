@@ -59,14 +59,12 @@ describe('pipeline-validateJS', function() {
     describe('ValidateJS Pipeline with options', function() {
       var sandbox = {};
       var spy = {};
-      var msg;
       var url;
       var fn;
 
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
         spy = sandbox.spy(handyman, 'log');
-        msg = '';
       });
 
       afterEach(function() {
@@ -91,12 +89,12 @@ describe('pipeline-validateJS', function() {
         fn.should.throw();
       });
 
-      it('should test validateJS() with valid object options', function() {
-        pipeline({ 'rules': { 'no-empty': 0 }});
+      it('should test validateJS() with valid url as options', function() {
+        pipeline('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith('Custom configuration being applied');
+        spy.should.have.been.calledWith('Linting using custom file');
       });
-
+      
       it('should test validateJS() with valid url as options', function() {
         pipeline('./test/fixtures/.eslintrc3');
 

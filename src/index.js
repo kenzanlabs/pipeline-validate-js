@@ -5,14 +5,16 @@ var fs = require('fs');
 var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var path = require('path');
+var _ = require('lodash');
 
-var esLintConfig = resolveConfigFile('.eslintrc');
+var ESLINT_CONFIG_PATH = './.eslintrc';
+var esLintConfig = resolveConfigFile(ESLINT_CONFIG_PATH);
 
 module.exports = {
   validateJS: function (options) {
-    if (options) {checkOptions(options);}
-    handyman.log('Validading js with ESlint');
+    if (options) { checkOptions(options); }
 
+    handyman.log('Validading js with ESlint');
     return validateES();
   }
 };
@@ -22,10 +24,12 @@ function checkOptions(options) {
   var customConfig = {};
   var origin = {};
 
-  if (options && isObj(options)) {
+  if (_.isPlainObject(options)) {
+    handyman.log('Parsing Options');
     esLintConfig = handyman.mergeConfig(dest, options);
-  } else if (options && typeof options === 'string') {
-    handyman.log('Linting using provided .eslintrc');
+
+  } else if (typeof options === 'string') {
+    handyman.log('Linting using custom file');
 
     customConfig = resolveConfigFile(options);
     origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
@@ -34,13 +38,6 @@ function checkOptions(options) {
     handyman.log('** Options not valid **');
 
     throw new ReferenceError(options + ' does not Exist.');
-  }
-}
-
-function isObj(entry) {
-  if (typeof entry === 'object' && !Array.isArray(entry)) {
-    handyman.log('Custom configuration being applied');
-    return true;
   }
 }
 
@@ -81,6 +78,9 @@ function makePipe() {
 }
 
 function validateES() {
-  esLintConfig = resolveConfigFile('.eslintrc');
-  return makePipe();
+  var pipeline = makePipe();
+
+  esLintConfig = resolveConfigFile(ESLINT_CONFIG_PATH);
+
+  return pipeline;
 }
