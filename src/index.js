@@ -37,7 +37,7 @@ function checkOptions(options) {
   } else {
     handyman.log('** Options not valid **');
 
-    throw new ReferenceError(options + ' does not Exist.');
+    throw new ReferenceError();
   }
 }
 

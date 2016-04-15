@@ -59,7 +59,6 @@ describe('pipeline-validateJS', function() {
     describe('ValidateJS Pipeline with options', function() {
       var sandbox = {};
       var spy = {};
-      var url;
       var fn;
 
       beforeEach(function() {
@@ -75,12 +74,14 @@ describe('pipeline-validateJS', function() {
         fn = function() {pipeline(234);};
 
         fn.should.throw();
+        spy.should.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with invalid options, array', function() {
         fn = function() {pipeline(['semi', 1]);};
 
         fn.should.throw();
+        spy.should.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with an invalid file path as an  option', function() {
@@ -94,11 +95,17 @@ describe('pipeline-validateJS', function() {
 
         spy.should.have.been.calledWith('Linting using custom file');
       });
-      
+
       it('should test validateJS() with valid url as options', function() {
         pipeline('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith(sinon.match(/.eslintrc3$/));
+        spy.should.have.been.calledWith(sinon.match(/^Linting using.*eslintrc3$/));
+      });
+
+      it('should test validateJS() with valid object as options', function() {
+        pipeline({ 'rules': { 'semi': 2 }});
+
+        spy.should.have.been.calledWith('Parsing Options');
       });
 
     });
