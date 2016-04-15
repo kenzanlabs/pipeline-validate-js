@@ -61,6 +61,7 @@ describe('pipeline-validateJS', function() {
       var spy = {};
       var msg;
       var url;
+      var fn;
 
       beforeEach(function() {
         sandbox = sinon.sandbox.create();
@@ -73,17 +74,19 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with invalid options, number', function() {
-        pipeline(234);
-        spy.should.have.been.calledWith('** Options not valid **');
+        fn = function() {pipeline(234);};
+
+        fn.should.throw();
       });
 
       it('should test validateJS() with invalid options, array', function() {
-        pipeline(['semi', 1]);
-        spy.should.have.been.calledWith('** Options not valid **');
+        fn = function() {pipeline(['semi', 1]);};
+
+        fn.should.throw();
       });
 
       it('should test validateJS() with an invalid file path as an  option', function() {
-        var fn = function() { pipeline('.eslintrc1'); };
+        fn = function() { pipeline('.eslintrc1'); };
 
         fn.should.throw();
       });
@@ -95,11 +98,9 @@ describe('pipeline-validateJS', function() {
       });
 
       it('should test validateJS() with valid url as options', function() {
-        url = './test/fixtures/.eslintrc3';
-        msg = 'Linting using ' + url;
         pipeline('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith(sinon.match(msg));
+        spy.should.have.been.calledWith(sinon.match(/.eslintrc3$/));
       });
 
     });

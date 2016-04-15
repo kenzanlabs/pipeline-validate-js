@@ -25,12 +25,15 @@ function checkOptions(options) {
   if (options && isObj(options)) {
     esLintConfig = handyman.mergeConfig(dest, options);
   } else if (options && typeof options === 'string') {
-    handyman.log('Linting using ' + options);
+    handyman.log('Linting using provided .eslintrc');
+
     customConfig = resolveConfigFile(options);
     origin = JSON.parse(fs.readFileSync(customConfig, 'utf8'));
     esLintConfig = handyman.mergeConfig(dest, origin);
   } else {
     handyman.log('** Options not valid **');
+
+    throw new ReferenceError(options + ' does not Exist.');
   }
 }
 
