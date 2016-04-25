@@ -5,6 +5,7 @@ var isStream = require('isstream');
 var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 var validatePipeline = require('../src/index.js');
+// var fs = require('fs');
 
 chai.should();
 chai.use(sinonChai);
@@ -107,6 +108,28 @@ describe('pipeline-validateJS', function() {
 
         spy.should.have.been.calledWith('Parsing Options');
       });
+
+      // it('should test validateJS() with no options, with local .eslintrc file', function() {
+      //   makePipeFolder(function(e) {
+      //     if (e) { return; }
+      //     pipeline();
+      //     spy.should.have.been.calledWith('Merging custom and local configuration');
+      //   });
+      //
+      //   setTimeout(function() {
+      //     delPipeFolder();
+      //   }, 500);
+      //
+      //   function makePipeFolder() {
+      //     fs.mkdirSync('./node_modules/pipeline-validate-js');
+      //     fs.appendFile('./node_modules/pipeline-validate-js/.eslintrc', '{"rules": {"no-case-declarations" : 0} }', 'utf8');
+      //   }
+      //
+      //   function delPipeFolder() {
+      //     fs.unlinkSync('./node_modules/pipeline-validate-js/.eslintrc');
+      //     fs.rmdirSync('./node_modules/pipeline-validate-js');
+      //   }
+      // });
 
     });
   });

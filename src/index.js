@@ -85,20 +85,13 @@ function existsSync(filename) {
   }
 }
 
-function makePipe() {
+function validateES() {
   var stream = lazypipe()
     .pipe(eslint, esLintConfig)
     .pipe(eslint.format)
     .pipe(eslint.failOnError);
 
-  return stream();
-}
-
-function validateES() {
-  var pipeline = makePipe();
-
   esLintConfig = resolveConfigFile(ESLINT_CONFIG_PATH);
-
-  return pipeline;
+  return stream();
 }
 
