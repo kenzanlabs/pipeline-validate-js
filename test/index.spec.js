@@ -6,7 +6,8 @@ var sinon = require('sinon');
 var sinonChai = require('sinon-chai');
 var validatePipeline = require('../src/index.js');
 
-chai.should();
+var expect = chai.expect;
+
 chai.use(sinonChai);
 
 describe('pipeline-validateJS', function () {
@@ -14,13 +15,13 @@ describe('pipeline-validateJS', function () {
   describe('Initialization', function () {
 
     it('should exist as an object', function () {
-      (validatePipeline).should.exist;
-      (typeof validatePipeline).should.equal('object');
+      expect(validatePipeline).to.exist;
+      expect(validatePipeline).to.be.an('object');
     });
 
     it('should expose a validateJS method', function () {
-      (validatePipeline.validateJS).should.exist;
-      (typeof validatePipeline.validateJS).should.equal('function');
+      expect(validatePipeline.validateJS).to.exist;
+      expect(validatePipeline.validateJS).to.be.a('function');
     });
 
   });
