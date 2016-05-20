@@ -50,6 +50,7 @@
     "gulp": "3.9.0",
     "isstream": "0.1.2",
     "mocha": "2.3.2",
+    "pipeline-validate-js": "1.0.0-rc2",
     "pipeline-test-node": "0.4.1",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0"
