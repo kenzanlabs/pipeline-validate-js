@@ -12,6 +12,12 @@ chai.use(sinonChai);
 
 describe('pipeline-validateJS', function () {
 
+  var validateJS;
+
+  beforeEach(function () {
+    validateJS = validatePipeline.validateJS;
+  });
+
   describe('Initialization', function () {
 
     it('should exist as an object', function () {
@@ -26,15 +32,10 @@ describe('pipeline-validateJS', function () {
 
   });
 
-  xdescribe('validateJS method', function () {
-    var validateJS;
-
-    beforeEach(function () {
-      validateJS = validatePipeline.validateJS;
-    });
+  describe('validateJS method', function () {
 
     it('should return a stream', function () {
-      isStream(stream()).should.equal(true);
+      expect(isStream(validateJS())).to.be.true;
     });
 
   });
@@ -45,18 +46,7 @@ describe('pipeline-validateJS', function () {
    should check that the merged rules
    */
 
-  xdescribe('validateJS method', function () {
-    var stream;
-
-    beforeEach(function () {
-      stream = function () {
-        return pipeline();
-      };
-    });
-
-    it('should return a stream', function () {
-      isStream(stream()).should.equal(true);
-    });
+  describe('validateJS method', function () {
 
     describe('validateJS pipeline with no options', function () {
       var sandbox = {};
@@ -72,8 +62,8 @@ describe('pipeline-validateJS', function () {
       });
 
       it('should test validateJS() with no options', function () {
-        pipeline();
-        spy.should.have.been.calledWith('Validading js with ESlint');
+        validateJS();
+        expect(spy).to.have.been.calledWith('Validading js with ESlint');
       });
     });
 
@@ -93,46 +83,46 @@ describe('pipeline-validateJS', function () {
 
       it('should test validateJS() with invalid options, number', function () {
         fn = function () {
-          pipeline(234);
+          validateJS(234);
         };
 
-        fn.should.throw();
-        spy.should.have.been.calledWith('** Options not valid **');
+        expect(fn).to.throw();
+        expect(spy).to.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with invalid options, array', function () {
         fn = function () {
-          pipeline(['semi', 1]);
+          validateJS(['semi', 1]);
         };
 
-        fn.should.throw();
-        spy.should.have.been.calledWith('** Options not valid **');
+        expect(fn).to.throw();
+        expect(spy).to.have.been.calledWith('** Options not valid **');
       });
 
       it('should test validateJS() with an invalid file path as an  option', function () {
         fn = function () {
-          pipeline('.eslintrc1');
+          validateJS('.eslintrc1');
         };
 
-        fn.should.throw();
+        expect(fn).to.throw();
       });
 
       it('should test validateJS() with valid url as options', function () {
-        pipeline('./test/fixtures/.eslintrc3');
+        validateJS('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith('Linting using custom file');
+        expect(spy).to.have.been.calledWith('Linting using custom file');
       });
 
       it('should test validateJS() with valid url as options', function () {
-        pipeline('./test/fixtures/.eslintrc3');
+        validateJS('./test/fixtures/.eslintrc3');
 
-        spy.should.have.been.calledWith(sinon.match(/^Linting using.*eslintrc3$/));
+        expect(spy).to.have.been.calledWith(sinon.match(/^Linting using.*eslintrc3$/));
       });
 
       it('should test validateJS() with valid object as options', function () {
-        pipeline({'rules': {'semi': 2}});
+        validateJS({'rules': {'semi': 2}});
 
-        spy.should.have.been.calledWith('Parsing Options');
+        expect(spy).to.have.been.calledWith('Parsing Options');
       });
 
     });
