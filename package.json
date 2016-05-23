@@ -14,7 +14,9 @@
     }
   ],
   "scripts": {
-    "test": "mocha test/index.spec.js -w"
+    "test": "mocha test/*.spec.js -w",
+    "coverage": "istanbul cover _mocha -- -R spec",
+    "posttest": "npm run coverage"
   },
   "main": "src/index.js",
   "repository": {
@@ -47,11 +49,13 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "fs-extra": "0.30.0",
     "gulp": "3.9.0",
     "isstream": "0.1.2",
+    "istanbul": "0.4.3",
     "mocha": "2.3.2",
-    "pipeline-validate-js": "1.0.0-rc2",
     "pipeline-test-node": "0.4.1",
+    "rimraf": "2.5.2",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0"
   }
