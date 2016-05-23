@@ -12,7 +12,7 @@ var validator = require('../src/validator');
 var expect = chai.expect;
 chai.use(sinonChai);
 
-describe.only('Validator', function () {
+describe('Validator', function () {
 
   it('should return an object', function () {
     expect(validator).to.be.an('object');

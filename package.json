@@ -15,8 +15,7 @@
   ],
   "scripts": {
     "test": "mocha test/*.spec.js -w",
-    "coverage": "istanbul cover _mocha -- -R spec",
-    "posttest": "npm run coverage"
+    "coverage": "istanbul cover _mocha -- -R spec"
   },
   "main": "src/index.js",
   "repository": {
