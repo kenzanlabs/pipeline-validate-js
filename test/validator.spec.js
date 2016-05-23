@@ -54,6 +54,11 @@ describe.only('Validator', function () {
       expect(validator.getLintConfig().plugins).to.exist;
       expect(validator.getLintConfig().rules).to.exist;
     });
+
+    it('should merge with provided options', function () {
+      expect(validator.getLintConfig({env: {node: false}}).env.node).to.be.false;
+    });
+
   });
 
 });

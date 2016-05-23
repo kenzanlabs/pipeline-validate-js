@@ -2,20 +2,25 @@
 
 var path = require('path');
 var fs = require('fs');
+var handyman = require('pipeline-handyman');
 
 module.exports = {
 
-  getLintConfig: function () {
+  getLintConfig: function (options) {
     var config = {};
     var defaultPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
 
     try{
-      config = fs.readFileSync(defaultPath, 'utf-8');
+      config = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
     } catch (ex){
       throw new Error(ex);
     }
 
-    return JSON.parse(config);
+    if (options){
+      config = handyman.mergeConfig(config,  options)
+    }
+
+    return config;
   }
 
 
