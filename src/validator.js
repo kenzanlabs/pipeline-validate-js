@@ -6,11 +6,13 @@ var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var eslint = require('gulp-eslint');
 
+var NODE_MODULES_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
+
 module.exports = {
 
   getLintConfig: function (options) {
     var config = {};
-    var defaultPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
+    var defaultPath = path.join(process.cwd(), NODE_MODULES_PATH);
     var customConfig;
 
     try {
