@@ -15,7 +15,7 @@ var expect = chai.expect;
 chai.use(sinonChai);
 chai.use(dirtyChai);
 
-describe.only('Validator', function () {
+describe('Validator', function () {
 
   it('should return an object', function () {
     expect(validator).to.be.an('object');
@@ -25,47 +25,59 @@ describe.only('Validator', function () {
     var esLintFilePath;
     var mockLintConfigPath;
 
-    before(function () {
-      esLintFilePath = path.join(process.cwd(), '.eslintrc');
-      mockLintConfigPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
+    describe('Node modules do not exist', function () {
 
-      try {
-        // file exists, do nothing
-        fs.accessSync(mockLintConfigPath);
-      } catch (ex) {
-        fs.copySync(esLintFilePath, mockLintConfigPath);
-      }
+      it('should throw an error if node_modules do not exist', function () {
+        expect(validator.getLintConfig.bind(validator, '')).to.throw(Error);
+      });
 
     });
 
-    after(function () {
-      rimraf.sync(mockLintConfigPath.replace('.eslintrc', ''));
-    });
+    describe('Node modules exist', function () {
 
-    it('should expose a getLintConfig method ', function () {
-      expect(validator.getLintConfig).to.exist();
-      expect(validator.getLintConfig).to.be.a('function');
-    });
+      before(function () {
+        esLintFilePath = path.join(process.cwd(), '.eslintrc');
+        mockLintConfigPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
 
-    it('should return an object', function () {
-      expect(validator.getLintConfig()).to.be.an('object');
-    });
+        try {
+          // file exists, do nothing
+          fs.accessSync(mockLintConfigPath);
+        } catch (ex) {
+          fs.copySync(esLintFilePath, mockLintConfigPath);
+        }
 
-    it('should return the default .eslintrc object when no options are passed', function () {
-      expect(validator.getLintConfig().env).to.exist();
-      expect(validator.getLintConfig().globals).to.exist();
-      expect(validator.getLintConfig().plugins).to.exist();
-      expect(validator.getLintConfig().rules).to.exist();
-    });
+      });
 
-    it('should merge with options, when provided', function () {
-      expect(validator.getLintConfig({env: {node: false}}).env.node).to.be.false();
-    });
+      after(function () {
+        rimraf.sync(mockLintConfigPath.replace('.eslintrc', ''));
+      });
 
-    it('should merge with a custom .eslintrc when a filepath is provided', function () {
-      var customLintConfigPath = path.join(process.cwd(), 'test/fixtures/.mock-eslintrc');
+      it('should expose a getLintConfig method ', function () {
+        expect(validator.getLintConfig).to.exist();
+        expect(validator.getLintConfig).to.be.a('function');
+      });
 
-      expect(validator.getLintConfig(customLintConfigPath).rules['no-case-declarations']).to.equal(0);
+      it('should return an object', function () {
+        expect(validator.getLintConfig()).to.be.an('object');
+      });
+
+      it('should return the default .eslintrc object when no options are passed', function () {
+        expect(validator.getLintConfig().env).to.exist();
+        expect(validator.getLintConfig().globals).to.exist();
+        expect(validator.getLintConfig().plugins).to.exist();
+        expect(validator.getLintConfig().rules).to.exist();
+      });
+
+      it('should merge with options, when provided', function () {
+        expect(validator.getLintConfig({env: {node: false}}).env.node).to.be.false();
+      });
+
+      it('should merge with a custom .eslintrc when a filepath is provided', function () {
+        var customLintConfigPath = path.join(process.cwd(), 'test/fixtures/.mock-eslintrc');
+
+        expect(validator.getLintConfig(customLintConfigPath).rules['no-case-declarations']).to.equal(0);
+
+      });
 
     });
 
@@ -79,7 +91,7 @@ describe.only('Validator', function () {
     });
 
     it('should log an error when called without a config param', function () {
-      var spy = sinon.spy(handyman,  'log');
+      var spy = sinon.spy(handyman, 'log');
       validator.validate();
       expect(spy).to.have.been.calledWith('Validate error! Config object required');
     });
