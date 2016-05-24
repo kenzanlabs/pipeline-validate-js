@@ -11,10 +11,15 @@
     {
       "name": "Chris Sharon",
       "email": "csharon@kenzan.com"
+    },
+    {
+      "name": "Paul Barry",
+      "email": "pbarry@kenzan.com"
     }
   ],
   "scripts": {
-    "test": "mocha test/index.spec.js -w"
+    "test": "mocha test/*.spec.js -w",
+    "coverage": "istanbul cover _mocha -- -R spec"
   },
   "main": "src/index.js",
   "repository": {
@@ -47,10 +52,14 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "dirty-chai": "1.2.2",
+    "fs-extra": "0.30.0",
     "gulp": "3.9.0",
     "isstream": "0.1.2",
+    "istanbul": "0.4.3",
     "mocha": "2.3.2",
     "pipeline-test-node": "0.4.1",
+    "rimraf": "2.5.2",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0"
   }
