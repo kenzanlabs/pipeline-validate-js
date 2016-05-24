@@ -47,100 +47,45 @@ describe('pipeline-validateJS', function () {
 
   it('should utilize the validator.getLintConfig method to lint with the provided options (default)', function () {
     var spy = sinon.spy(validator, 'getLintConfig');
+
     validatePipeline.validateJS();
+
     expect(spy).to.have.been.called();
+
+    spy.restore();
   });
-  it('should utilize the validator.getLintConfig method to lint with a custom options object (custom)', function (){
+
+  it('should utilize the validator.getLintConfig method to lint with a custom options object (custom)', function () {
+    var mockConfig = {env: {node: true}};
+    var spy = sinon.spy(validator, 'getLintConfig');
+
+    validatePipeline.validateJS(mockConfig);
+
+    expect(spy).to.have.been.called(mockConfig);
+
+    spy.restore();
+  });
+
+  it('should utilize the validator.getLintConfig method to lint with a custom file path (string)', function () {
+    var mockConfigPath = process.cwd() + '/.eslintrc';
+    var spy = sinon.spy(validator, 'getLintConfig');
+
+    validatePipeline.validateJS(mockConfigPath);
+
+    expect(spy).to.have.been.called(mockConfigPath);
+
+    spy.restore();
+  });
+
+  it('should utilize the validator.validate method to lint the files', function () {
+    var spy = sinon.spy(validator, 'validate');
+
+    validatePipeline.validateJS();
+
+    expect(spy).to.have.been.called();
+
+    spy.restore();
 
   });
-  it('should utilize the validator.getLintConfig method to lint with a custom file path (string)');
-  it('should utilize the validator.validate method with the retrieved options');
 
 });
-//   should log a message stating that the default (included) .eslintrc is being used
-//   should log a message stating that a repo .eslintrc is available, and being merged
-//   should check that the merged rules
-//   */
-//
-//  describe('validateJS method', function () {
-//
-//    describe('validateJS pipeline with no options', function () {
-//      var sandbox = {};
-//      var spy = {};
-//
-//      beforeEach(function () {
-//        sandbox = sinon.sandbox.create();
-//        spy = sandbox.spy(handyman, 'log');
-//      });
-//
-//      afterEach(function () {
-//        sandbox.restore();
-//      });
-//
-//      it('should test validateJS() with no options', function () {
-//        validateJS();
-//        expect(spy).to.have.been.calledWith('Validading js with ESlint');
-//      });
-//    });
-//
-//    describe('ValidateJS Pipeline with options', function () {
-//      var sandbox = {};
-//      var spy = {};
-//      var fn;
-//
-//      beforeEach(function () {
-//        sandbox = sinon.sandbox.create();
-//        spy = sandbox.spy(handyman, 'log');
-//      });
-//
-//      afterEach(function () {
-//        sandbox.restore();
-//      });
-//
-//      it('should test validateJS() with invalid options, number', function () {
-//        fn = function () {
-//          validateJS(234);
-//        };
-//
-//        expect(fn).to.throw();
-//        expect(spy).to.have.been.calledWith('** Options not valid **');
-//      });
-//
-//      it('should test validateJS() with invalid options, array', function () {
-//        fn = function () {
-//          validateJS(['semi', 1]);
-//        };
-//
-//        expect(fn).to.throw();
-//        expect(spy).to.have.been.calledWith('** Options not valid **');
-//      });
-//
-//      it('should test validateJS() with an invalid file path as an  option', function () {
-//        fn = function () {
-//          validateJS('.eslintrc1');
-//        };
-//
-//        expect(fn).to.throw();
-//      });
-//
-//      it('should test validateJS() with valid url as options', function () {
-//        validateJS('./test/fixtures/.eslintrc3');
-//
-//        expect(spy).to.have.been.calledWith('Linting using custom file');
-//      });
-//
-//      it('should test validateJS() with valid url as options', function () {
-//        validateJS('./test/fixtures/.eslintrc3');
-//
-//        expect(spy).to.have.been.calledWith(sinon.match(/^Linting using.*eslintrc3$/));
-//      });
-//
-//      it('should test validateJS() with valid object as options', function () {
-//        validateJS({'rules': {'semi': 2}});
-//
-//        expect(spy).to.have.been.calledWith('Parsing Options');
-//      });
-//
-//    });
-//  });
-//});
