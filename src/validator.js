@@ -9,6 +9,7 @@ module.exports = {
   getLintConfig: function (options) {
     var config = {};
     var defaultPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
+    var customConfig;
 
     try{
       config = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
@@ -17,7 +18,15 @@ module.exports = {
     }
 
     if (options){
-      config = handyman.mergeConfig(config,  options)
+
+      if(typeof options === 'string'){
+        customConfig = fs.readFileSync(options, 'utf-8');
+        config = handyman.mergeConfig(config,  JSON.parse(customConfig));
+
+      }else{
+        config = handyman.mergeConfig(config,  options);
+
+      }
     }
 
     return config;

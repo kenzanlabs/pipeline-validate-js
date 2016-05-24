@@ -11,6 +11,10 @@
     {
       "name": "Chris Sharon",
       "email": "csharon@kenzan.com"
+    },
+    {
+      "name": "Paul Barry",
+      "email": "pbarry@kenzan.com"
     }
   ],
   "scripts": {
@@ -48,6 +52,7 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
+    "dirty-chai": "1.2.2",
     "fs-extra": "0.30.0",
     "gulp": "3.9.0",
     "isstream": "0.1.2",
