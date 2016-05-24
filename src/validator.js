@@ -3,6 +3,8 @@
 var path = require('path');
 var fs = require('fs');
 var handyman = require('pipeline-handyman');
+var lazypipe = require('lazypipe');
+var eslint = require('gulp-eslint');
 
 module.exports = {
 
@@ -11,26 +13,43 @@ module.exports = {
     var defaultPath = path.join(process.cwd(), 'node_modules/pipeline-validate-js/.eslintrc');
     var customConfig;
 
-    try{
+    try {
       config = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
-    } catch (ex){
+    } catch (ex) {
       throw new Error(ex);
     }
 
-    if (options){
+    if (options) {
 
-      if(typeof options === 'string'){
+      if (typeof options === 'string') {
         customConfig = fs.readFileSync(options, 'utf-8');
-        config = handyman.mergeConfig(config,  JSON.parse(customConfig));
+        config = handyman.mergeConfig(config, JSON.parse(customConfig));
 
-      }else{
-        config = handyman.mergeConfig(config,  options);
+      } else {
+        config = handyman.mergeConfig(config, options);
 
       }
     }
 
     return config;
+  },
+
+  validate: function (config) {
+    var stream;
+
+    if (typeof config === 'undefined') {
+      handyman.log('Validate error! Config object required');
+      return false;
+
+    } else {
+      stream = lazypipe()
+        .pipe(eslint.format)
+        .pipe(eslint, config)
+        .pipe(eslint.failOnError);
+
+      return stream();
+
+    }
+
   }
-
-
 };

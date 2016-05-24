@@ -6,7 +6,8 @@ var sinonChai = require('sinon-chai');
 var dirtyChai = require('dirty-chai');
 var fs = require('fs-extra');
 var path = require('path');
-var rimraf  = require('rimraf');
+var rimraf = require('rimraf');
+var isStream = require('isstream');
 
 var validator = require('../src/validator');
 
@@ -14,7 +15,7 @@ var expect = chai.expect;
 chai.use(sinonChai);
 chai.use(dirtyChai);
 
-describe('Validator', function () {
+describe.only('Validator', function () {
 
   it('should return an object', function () {
     expect(validator).to.be.an('object');
@@ -62,10 +63,29 @@ describe('Validator', function () {
     });
 
     it('should merge with a custom .eslintrc when a filepath is provided', function () {
-      var customLintConfigPath =  path.join(process.cwd(), 'test/fixtures/.mock-eslintrc');
+      var customLintConfigPath = path.join(process.cwd(), 'test/fixtures/.mock-eslintrc');
 
       expect(validator.getLintConfig(customLintConfigPath).rules['no-case-declarations']).to.equal(0);
 
+    });
+
+  });
+
+  describe('Method: validate', function () {
+
+    it('should expose a validate method ', function () {
+      expect(validator.validate).to.exist();
+      expect(validator.validate).to.be.a('function');
+    });
+
+    it('should log an error when called without a config param', function () {
+      var spy = sinon.spy(handyman,  'log');
+      validator.validate();
+      expect(spy).to.have.been.calledWith('Validate error! Config object required');
+    });
+
+    it('should return a stream', function () {
+      expect(isStream(validator.validate({}))).to.be.true();
     });
 
   });
