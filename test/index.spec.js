@@ -47,49 +47,6 @@ describe('pipeline-validateJS', function () {
     expect(isStream(validatePipeline.validateJS())).to.be.true();
   });
 
-  it('should utilize the getLintConfig method to lint with the provided options (default)', function () {
-    var spy = sinon.spy(validatePipeline, 'getLintConfig');
-
-    validatePipeline.validateJS();
-
-    expect(spy).to.have.been.called();
-
-    spy.restore();
-  });
-
-  it('should utilize the getLintConfig method to lint with a custom options object (custom)', function () {
-    var mockConfig = {env: {node: true}};
-    var spy = sinon.spy(validatePipeline, 'getLintConfig');
-
-    validatePipeline.validateJS(mockConfig);
-
-    expect(spy).to.have.been.called(mockConfig);
-
-    spy.restore();
-  });
-
-  it('should utilize the getLintConfig method to lint with a custom file path (string)', function () {
-    var mockConfigPath = process.cwd() + '/.eslintrc';
-    var spy = sinon.spy(validatePipeline, 'getLintConfig');
-
-    validatePipeline.validateJS(mockConfigPath);
-
-    expect(spy).to.have.been.called(mockConfigPath);
-
-    spy.restore();
-  });
-
-  it('should utilize the validate method to lint the files', function () {
-    var spy = sinon.spy(validatePipeline, 'validate');
-
-    validatePipeline.validateJS();
-
-    expect(spy).to.have.been.called();
-
-    spy.restore();
-
-  });
-
   it('should return a object', function () {
     (typeof validatePipeline).should.equal('object');
   });
@@ -182,26 +139,6 @@ describe('pipeline-validateJS', function () {
         spy.should.have.been.calledWith('Parsing Options');
       });
 
-    });
-
-    describe('validate function', function() {
-      var sandbox = {};
-      var spy = {};
-      var validateFunction = validatePipeline.validate;
-
-      beforeEach(function() {
-        sandbox = sinon.sandbox.create();
-        spy = sandbox.spy(handyman, 'log');
-      });
-
-      afterEach(function() {
-        sandbox.restore();
-      });
-
-      it('should test validate() with config undefined', function() {
-        validateFunction();
-        spy.should.have.been.calledWith('Validate error! Config object required');
-      });
     });
   });
 });
