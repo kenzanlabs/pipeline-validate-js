@@ -7,20 +7,22 @@ var lazypipe = require('lazypipe');
 var path = require('path');
 var _ = require('lodash');
 
-var NODE_MODULES_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
+var ESLINT_DEFAULT_CONFIG_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
 
 module.exports = {
   validateJS: function (options) {
-    var config = checkLocalLintFile(options);
+    var config;
 
     handyman.log('Validading js with ESlint');
+    config = checkLocalLintFile(options);
+
     return pipelineFactory(config);
   }
 };
 
 function checkLocalLintFile(options) {
   var config = {};
-  var defaultPath = path.join(process.cwd(), NODE_MODULES_PATH);
+  var defaultPath = path.join(process.cwd(), ESLINT_DEFAULT_CONFIG_PATH);
   var rootPath = path.join(process.cwd(), '.eslintrc');
   var customConfig;
 
@@ -29,7 +31,7 @@ function checkLocalLintFile(options) {
     config = JSON.parse(fs.readFileSync(defaultPath, 'utf-8'));
 
   } catch (ex) {
-    // no op.
+    handyman.log(String(ex));
 
   }
 
@@ -69,17 +71,17 @@ function checkLocalLintFile(options) {
 function pipelineFactory(config) {
   var stream;
 
-  if (typeof config === 'undefined') {
-    handyman.log('Validate error! Config object required');
-    return false;
-
-  } else {
+  if (typeof config === 'object') {
     stream = lazypipe()
         .pipe(eslint.format)
         .pipe(eslint, config)
         .pipe(eslint.failOnError);
 
     return stream();
+
+  } else {
+    handyman.log('Validate error! Config object required');
+    return false;
 
   }
 }
