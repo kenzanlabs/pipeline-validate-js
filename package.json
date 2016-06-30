@@ -49,11 +49,11 @@
     "chai": "3.5.0",
     "dirty-chai": "1.2.2",
     "fs-extra": "0.30.0",
-    "rimraf": "2.5.2",
     "gulp": "3.9.0",
     "isstream": "0.1.2",
     "mocha": "2.3.2",
     "pipeline-test-node": "0.4.1",
+    "rimraf": "2.5.2",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0"
   }
