@@ -25,7 +25,8 @@
     "no-extra-parens": [2, "all", {
       "conditionalAssign": false,
       "returnAssign": false,
-      "nestedBinaryExpressions": false}],
+      "nestedBinaryExpressions": false
+    }],
     "no-extra-semi": 2,
     "no-func-assign": 2,
     "no-inner-declarations": 2,
