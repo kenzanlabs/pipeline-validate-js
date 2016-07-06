@@ -4,20 +4,6 @@ var gulp = require('gulp');
 var validatePipeline = require('./src/index.js');
 var testPipeline = require('pipeline-test-node');
 
-var config = {
-  plugins: {
-    istanbul: {
-      includeUntested: true,
-      writeReports: {
-        reporters: ['html']
-      },
-      thresholds: {
-        global: 75
-      }
-    }
-  }
-};
-
 var validateConfig = {
   linter: {
     files: [
@@ -45,5 +31,5 @@ gulp.task('lint', function() {
 gulp.task('build', ['lint'], function() {
   return gulp
     .src(validateConfig.test.files)
-    .pipe(testPipeline.test(config));
+    .pipe(testPipeline.test());
 });
