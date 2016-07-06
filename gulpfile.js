@@ -2,18 +2,21 @@
 
 var gulp = require('gulp');
 var validatePipeline = require('./src/index.js');
-var testPipeline = require('pipeline-test-node')({ plugins: {
-  mocha: {
-    reporter: 'spec'
-  },
-  istanbul: {
-    includeUntested: true,
-    reporters: ['text-summary'],
-    thresholds: {
-      global: 75
+var testPipeline = require('pipeline-test-node');
+
+var config = {
+  plugins: {
+    istanbul: {
+      includeUntested: true,
+      writeReports: {
+        reporters: ['html']
+      },
+      thresholds: {
+        global: 75
+      }
     }
   }
-}});
+}
 
 var validateConfig = {
   linter: {
@@ -42,5 +45,5 @@ gulp.task('lint', function() {
 gulp.task('build', ['lint'], function() {
   return gulp
     .src(validateConfig.test.files)
-    .pipe(testPipeline.test());
+    .pipe(testPipeline.test(config));
 });
