@@ -16,7 +16,7 @@ var config = {
       }
     }
   }
-}
+};
 
 var validateConfig = {
   linter: {
