@@ -83,7 +83,7 @@ describe('pipeline-validateJS', function () {
 
       it('should test validateJS() with no options', function() {
         pipeline();
-        spy.should.have.been.calledWith('Validading js with ESlint');
+        spy.should.have.been.calledWith('Validating js with ESlint');
       });
     });
 
