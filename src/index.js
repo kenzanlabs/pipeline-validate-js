@@ -14,7 +14,7 @@ module.exports = {
   validateJS: function (options) {
     var config;
 
-    handyman.log('Validading js with ESlint');
+    handyman.log('Validating js with ESlint');
     config = checkLocalLintFile(options);
 
     return pipelineFactory(config);
