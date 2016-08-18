@@ -39,7 +39,7 @@ gulp.task('test', ['lint'], function () {
       istanbul: {
         includeUntested: true,
         writeReports: {
-          reporters: ['html', 'text-summary']
+          reporters: ['html', 'text-summary', 'cobertura']
         },
         thresholds: {
           global: 75
