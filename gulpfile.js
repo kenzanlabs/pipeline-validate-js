@@ -33,13 +33,10 @@ gulp.task('test', ['lint'], function () {
   .src(validateConfig.test.files)
   .pipe(testPipeline.test({
     plugins: {
-      mocha: {
-        reporter: 'spec'
-      },
       istanbul: {
         includeUntested: true,
         writeReports: {
-          reporters: ['html', 'text-summary', 'cobertura']
+          reporters: ['html', 'text-summary', 'cobertura', 'lcov']
         },
         thresholds: {
           global: 75
