@@ -1,7 +1,7 @@
 {
   "name": "pipeline-validate-js",
   "version": "1.0.0-rc4",
-  "description": "Gulp pipeline to validate js files using JSHint and JSCS or ESLint",
+  "description": "Gulp pipeline to validate js files using ESLint",
   "author": "Juan P. Osorio <jposorio@kenzan.com> (https://github.com/jpoo90)",
   "contributors": [
     {
@@ -11,6 +11,10 @@
     {
       "name": "Chris Sharon",
       "email": "csharon@kenzan.com"
+    },
+    {
+      "name": "Paul Barry",
+      "email": "pbarry@kenzan.com"
     }
   ],
   "scripts": {
@@ -40,7 +44,7 @@
   "analyze": true,
   "license": "Apache 2",
   "dependencies": {
-    "gulp-eslint": "2.0.0",
+    "gulp-eslint": "3.0.1",
     "lazypipe": "1.0.1",
     "lodash": "3.10.1",
     "pipeline-handyman": "1.0.0"
