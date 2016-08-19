@@ -31,19 +31,7 @@ gulp.task('lint', function () {
 gulp.task('test', ['lint'], function () {
   return gulp
   .src(validateConfig.test.files)
-  .pipe(testPipeline.test({
-    plugins: {
-      istanbul: {
-        includeUntested: true,
-        writeReports: {
-          reporters: ['html', 'text-summary', 'cobertura', 'lcov']
-        },
-        thresholds: {
-          global: 75
-        }
-      }
-    }
-  }));
+  .pipe(testPipeline.test());
 });
 
 gulp.task('build', ['test']);
