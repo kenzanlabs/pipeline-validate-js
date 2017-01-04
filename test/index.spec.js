@@ -134,7 +134,7 @@ describe('pipeline-validateJS', function () {
       });
 
       it('should test validateJS() with valid object as options', function() {
-        pipeline({ 'rules': { 'semi': 2 }});
+        pipeline({ 'rules': { 'semi': 2 } });
 
         spy.should.have.been.calledWith('Parsing Options');
       });
