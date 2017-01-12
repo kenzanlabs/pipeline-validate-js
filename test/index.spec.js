@@ -147,6 +147,28 @@ describe('pipeline-validateJS', function () {
         spy.should.have.been.calledWith('Parsing Options');
       });
 
+      describe('ValidateJS Pipeline with custom formatter', function () {
+
+        it('should utilize eslint.format when a custom formatter name is provided', function () {
+          var spy = esLint.format;
+
+          pipeline({ formatter: 'checkstyle' });
+
+          expect(spy).to.have.been.calledWith('checkstyle');
+        });
+
+        it('should utilize eslint.format when a custom formatter function is provided', function () {
+          var spy = esLint.format;
+          var dummyFunc = function () {
+          };
+
+          pipeline({ formatter: dummyFunc });
+
+          expect(spy).to.have.been.calledWith(dummyFunc);
+        });
+
+      });
+
     });
   });
 });
