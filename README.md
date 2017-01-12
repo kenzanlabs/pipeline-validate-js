@@ -108,6 +108,23 @@ gulp.task('lint', function() {
 });
 ```
 
+### Failing on Errors
+By default, this pipeline will exit on a validation error. To prevent this exit on failure, provide the following option to the pipeline.
+
+```javascript
+var lintConfig = {
+  failOnError: false
+}
+
+gulp.task('lint', function() {
+  return gulp
+    .src('src/**/*.js')
+    .pipe(validatePipeline.validateJS(lintConfig));
+});
+```
+
+As with the custom formatting option, this option *will not* conflict with the ESLint default configuration options.
+
 ## Results
 
 This pipeline returns an object. This object receives a stream with the files to validate. You can call the _validateJS_
