@@ -21,7 +21,7 @@ module.exports = {
   }
 };
 
-function checkLocalLintFile(options) {
+function checkLocalLintFile (options) {
   var config = {};
   var defaultPath = path.join(process.cwd(), ESLINT_DEFAULT_CONFIG_PATH);
   var rootPath = path.join(process.cwd(), ESLINT_ROOT_CONFIG_PATH);
@@ -69,14 +69,14 @@ function checkLocalLintFile(options) {
   return config;
 }
 
-function pipelineFactory(config) {
+function pipelineFactory (config) {
   var stream;
 
   if (typeof config === 'object') {
     stream = lazypipe()
-        .pipe(eslint.format)
-        .pipe(eslint, config)
-        .pipe(eslint.failOnError);
+      .pipe(eslint, config)
+      .pipe(eslint.format, config.formatter)
+      .pipe(eslint.failOnError);
 
     return stream();
 
