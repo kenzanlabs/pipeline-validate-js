@@ -6,6 +6,7 @@ var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var path = require('path');
 var _ = require('lodash');
+var through2 = require('through2');
 
 var ESLINT_DEFAULT_CONFIG_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
 var ESLINT_ROOT_CONFIG_PATH = '.eslintrc';
@@ -76,7 +77,15 @@ function pipelineFactory (config) {
     stream = lazypipe()
       .pipe(eslint, config)
       .pipe(eslint.format, config.formatter)
-      .pipe(eslint.failOnError);
+      .pipe(function () {
+        var failOnError = config.hasOwnProperty('failOnError') && typeof config.failOnError !== 'undefined' ? config.failOnError : true;
+
+        if (failOnError) {
+          return eslint.failOnError();
+        } else {
+          return through2.obj();
+        }
+      });
 
     return stream();
 

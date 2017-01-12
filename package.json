@@ -47,7 +47,8 @@
     "gulp-eslint": "3.0.1",
     "lazypipe": "1.0.1",
     "lodash": "4.17.4",
-    "pipeline-handyman": "1.0.0"
+    "pipeline-handyman": "1.0.0",
+    "through2": "2.0.3"
   },
   "devDependencies": {
     "chai": "3.5.0",

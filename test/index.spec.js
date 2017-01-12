@@ -169,6 +169,22 @@ describe('pipeline-validateJS', function () {
 
       });
 
+      describe('ValidateJS Pipeline without failing on an error', function () {
+
+        it('should not utilize eslint.failOnError when the failOnError options is "false"', function () {
+          var spy = esLint.failOnError;
+
+          spy.reset();
+
+          pipeline({
+            failOnError: false
+          });
+
+          expect(spy).to.have.not.been.called();
+        });
+
+      });
+
     });
   });
 });
