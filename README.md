@@ -5,7 +5,7 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.0-rc4 |
+| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.0 |
 
 # Overview
 This is a [Gulp][] pipeline that allows a team to validate the JS files within their project for syntax and style. As
@@ -23,9 +23,6 @@ visualiztion of rule set changes.
 [ESLint]: http://eslint.org/
 [Bootstrap]: http://getbootstrap.com/
 [source]: https://github.com/twbs/bootstrap/blob/v3.3.6/dist/js/bootstrap.js
-
-**NOTE: this project is now in a 1.0.0 release candidate stage.  1.0.0-rc tags will be published to NPM to allow
-developers the chance to review and provide feedback.**
 
 ## Install
 
