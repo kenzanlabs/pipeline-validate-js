@@ -6,6 +6,7 @@ var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var path = require('path');
 var _ = require('lodash');
+var through2 = require('through2');
 
 var ESLINT_DEFAULT_CONFIG_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
 var ESLINT_ROOT_CONFIG_PATH = '.eslintrc';
@@ -21,7 +22,7 @@ module.exports = {
   }
 };
 
-function checkLocalLintFile(options) {
+function checkLocalLintFile (options) {
   var config = {};
   var defaultPath = path.join(process.cwd(), ESLINT_DEFAULT_CONFIG_PATH);
   var rootPath = path.join(process.cwd(), ESLINT_ROOT_CONFIG_PATH);
@@ -69,14 +70,22 @@ function checkLocalLintFile(options) {
   return config;
 }
 
-function pipelineFactory(config) {
+function pipelineFactory (config) {
   var stream;
 
   if (typeof config === 'object') {
     stream = lazypipe()
-        .pipe(eslint.format)
-        .pipe(eslint, config)
-        .pipe(eslint.failOnError);
+      .pipe(eslint, config)
+      .pipe(eslint.format, config.formatter)
+      .pipe(function () {
+        var failOnError = config.hasOwnProperty('failOnError') && typeof config.failOnError !== 'undefined' ? config.failOnError : true;
+
+        if (failOnError) {
+          return eslint.failOnError();
+        } else {
+          return through2.obj();
+        }
+      });
 
     return stream();
 
