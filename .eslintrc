@@ -86,7 +86,7 @@
         "no-unused-expressions": 0,
         "no-useless-call": 0,
         "no-void": 0,
-        "no-warning-comments": [2,{"terms":["todo"," fixme"," TODO"," FIXME"],"location":"anywhere"}],
+        "no-warning-comments": [1,{"terms":["todo"," fixme"," TODO"," FIXME"],"location":"anywhere"}],
         "no-with": 0,
         "radix": 2,
         "vars-on-top": 2,
