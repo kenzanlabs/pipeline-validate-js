@@ -1,5 +1,11 @@
 ## pipeline-validate-js
 
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/kenzanlabs/pipeline-validate-js)
+[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg)](https://kenzan.ci.cloudbees.com/job/CI-pipeline-validate-js/)
+[![Jenkins tests](https://img.shields.io/jenkins/t/https/jenkins.qa.ubuntu.com/precise-desktop-amd64_default.svg)](https://kenzan.ci.cloudbees.com/job/CI-pipeline-validate-js/lastCompletedBuild/testReport/)
+[![Jenkins coverage](https://img.shields.io/jenkins/c/https/jenkins.qa.ubuntu.com/address-book-service-utopic-i386-ci.svg)](https://kenzan.ci.cloudbees.com/job/CI-pipeline-validate-js/cobertura)
+[![GitHub issues](https://img.shields.io/github/issues/kenzanlabs/pipeline-validate-js.svg)](https://github.com/kenzanlabs/pipeline-validate-js/issues)
+[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/kenzanlabs/pipeline-validate-js/master/LICENSE.md)
 
 ## Information
 
