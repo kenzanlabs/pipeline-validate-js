@@ -67,6 +67,10 @@ function checkLocalLintFile (options) {
 
   }
 
+  config.envs = Object.keys(config.env || {}).map(function (name) {
+    return config.env[name] ? name : '';
+  });
+
   return config;
 }
 
