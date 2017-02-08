@@ -5,7 +5,7 @@
 
 | Package       | Description   | Version|
 | ------------- |:-------------:| -----:|
-| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.2 |
+| pipeline-validate-js| Pipeline to validate JavaScript files using ESLint | 1.0.3 |
 
 # Overview
 This is a [Gulp][] pipeline that allows a team to validate the JS files within their project for syntax and style. As
