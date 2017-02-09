@@ -1,5 +1,14 @@
 ## pipeline-validate-js
 
+[![GitHub release](https://img.shields.io/github/release/kenzanlabs/pipeline-validate-js.svg)](https://github.com/kenzanlabs/pipeline-validate-js/releases)
+[![npm](https://img.shields.io/npm/v/pipeline-validate-js.svg)](https://www.npmjs.com/package/pipeline-validate-js)
+[![Jenkins](https://img.shields.io/jenkins/s/https/kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js.svg)](https://kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js/)
+[![Jenkins tests](https://img.shields.io/jenkins/t/https/kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js.svg)](https://kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js/lastCompletedBuild/testReport/)
+[![Jenkins coverage](https://img.shields.io/jenkins/c/https/kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js.svg)](https://kenzan.ci.cloudbees.com/job/DEV-pipeline-validate-js/cobertura)
+[![npm](https://img.shields.io/npm/dt/pipeline-validate-js.svg)](https://www.npmjs.com/package/pipeline-validate-js)
+[![GitHub issues](https://img.shields.io/github/issues-raw/kenzanlabs/pipeline-validate-js.svg)](https://github.com/kenzanlabs/pipeline-validate-js/issues)
+[![GitHub issues](https://img.shields.io/github/issues-pr-raw/kenzanlabs/pipeline-validate-js.svg)](https://github.com/kenzanlabs/pipeline-validate-js/issues)
+[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/kenzanlabs/pipeline-validate-js/master/LICENSE.md)
 
 ## Information
 
