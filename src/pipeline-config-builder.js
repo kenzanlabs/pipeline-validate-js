@@ -8,7 +8,7 @@ var _ = require('lodash');
 var ESLINT_DEFAULT_CONFIG_PATH = 'node_modules/pipeline-validate-js/.eslintrc';
 var ESLINT_ROOT_CONFIG_PATH = '.eslintrc';
 
-function getPipelineConfig(options) {
+function pipelineConfigBuilder(options) {
   var config = {};
   var defaultPath = path.join(process.cwd(), ESLINT_DEFAULT_CONFIG_PATH);
   var rootPath = path.join(process.cwd(), ESLINT_ROOT_CONFIG_PATH);
@@ -60,4 +60,4 @@ function getPipelineConfig(options) {
   return config;
 }
 
-module.exports = getPipelineConfig;
+module.exports = pipelineConfigBuilder;

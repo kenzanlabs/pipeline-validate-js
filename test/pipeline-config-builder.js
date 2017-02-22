@@ -7,14 +7,14 @@ var dirtyChai = require('dirty-chai');
 var fs = require('fs-extra');
 var path = require('path');
 var rimraf = require('rimraf');
-var getPipelineConfig = require('../src/get-pipeline-config.js');
+var pipelineConfigBuilder = require('../src/pipeline-config-builder.js');
 var expect = chai.expect;
 
 chai.should();
 chai.use(sinonChai);
 chai.use(dirtyChai);
 
-describe('get-pipeline-config', function () {
+describe('pipeline-config-builder', function () {
 
   var esLintFilePath;
   var mockLintConfigPath;
@@ -38,18 +38,18 @@ describe('get-pipeline-config', function () {
     rimraf.sync(mockLintConfigPath.replace('.eslintrc', ''));
   });
 
-  describe('getPipelineConfig method', function () {
+  describe('pipelineConfigBuilder method', function () {
 
     it('should expose a method', function () {
-      expect(getPipelineConfig).to.exist();
-      expect(getPipelineConfig).to.be.a('function');
+      expect(pipelineConfigBuilder).to.exist();
+      expect(pipelineConfigBuilder).to.be.a('function');
     });
 
     it('should return an object', function () {
-      expect(getPipelineConfig()).to.be.an('object');
+      expect(pipelineConfigBuilder()).to.be.an('object');
     });
 
-    describe('getPipelineConfig without options', function () {
+    describe('pipelineConfigBuilder without options', function () {
       var sandbox = {};
       var spy = {};
 
@@ -63,12 +63,12 @@ describe('get-pipeline-config', function () {
       });
 
       it('should use root path', function () {
-        getPipelineConfig();
+        pipelineConfigBuilder();
         spy.should.have.been.calledWith('Linting using root path: ' + esLintFilePath);
       });
 
       it('should should merge root path config', function () {
-        var config = getPipelineConfig();
+        var config = pipelineConfigBuilder();
 
         // remove envs as it is added
         delete config.envs;

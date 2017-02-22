@@ -4,14 +4,14 @@ var eslint = require('gulp-eslint');
 var handyman = require('pipeline-handyman');
 var lazypipe = require('lazypipe');
 var through2 = require('through2');
-var getPipelineConfig = require('./get-pipeline-config');
+var pipelineConfigBuilder = require('./pipeline-config-builder');
 
 module.exports = {
   validateJS: function (options) {
     var config;
 
     handyman.log('Validating js with ESlint');
-    config = getPipelineConfig(options);
+    config = pipelineConfigBuilder(options);
 
     return pipelineFactory(config);
   }
