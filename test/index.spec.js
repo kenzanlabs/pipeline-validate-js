@@ -89,102 +89,43 @@ describe('pipeline-validateJS', function () {
 
     });
 
-    describe('ValidateJS Pipeline with options', function () {
-      var sandbox = {};
-      var spy = {};
-      var fn;
+    describe('ValidateJS Pipeline with custom formatter', function () {
 
-      beforeEach(function () {
-        sandbox = sinon.sandbox.create();
-        spy = sandbox.spy(handyman, 'log');
+      it('should utilize eslint.format when a custom formatter name is provided', function () {
+        var spy = esLint.format;
+
+        pipeline({ formatter: 'checkstyle' });
+
+        expect(spy).to.have.been.calledWith('checkstyle');
       });
 
-      afterEach(function () {
-        sandbox.restore();
-      });
-
-      it('should test validateJS() with invalid options, number', function () {
-        fn = function () {
-          pipeline(234);
+      it('should utilize eslint.format when a custom formatter function is provided', function () {
+        var spy = esLint.format;
+        var dummyFunc = function () {
         };
 
-        fn.should.throw();
-        spy.should.have.been.calledWith('** Options not valid **');
-      });
+        pipeline({ formatter: dummyFunc });
 
-      it('should test validateJS() with invalid options, array', function () {
-        fn = function () {
-          pipeline(['semi', 1]);
-        };
-
-        fn.should.throw();
-        spy.should.have.been.calledWith('** Options not valid **');
-      });
-
-      it('should test validateJS() with an invalid file path as an  option', function () {
-        fn = function () {
-          pipeline('.eslintrc1');
-        };
-
-        fn.should.throw();
-      });
-
-      it('should test validateJS() with valid url as options', function () {
-        pipeline('./test/fixtures/.eslintrc3');
-
-        spy.should.have.been.calledWith('Linting using custom file');
-      });
-
-      it('should test validateJS() with valid url as options', function () {
-        pipeline('./test/fixtures/.eslintrc3');
-
-        spy.should.have.been.calledWith(sinon.match(/^Linting using.*eslintrc3$/));
-      });
-
-      it('should test validateJS() with valid object as options', function() {
-        pipeline({ 'rules': { 'semi': 2 } });
-
-        spy.should.have.been.calledWith('Parsing Options');
-      });
-
-      describe('ValidateJS Pipeline with custom formatter', function () {
-
-        it('should utilize eslint.format when a custom formatter name is provided', function () {
-          var spy = esLint.format;
-
-          pipeline({ formatter: 'checkstyle' });
-
-          expect(spy).to.have.been.calledWith('checkstyle');
-        });
-
-        it('should utilize eslint.format when a custom formatter function is provided', function () {
-          var spy = esLint.format;
-          var dummyFunc = function () {
-          };
-
-          pipeline({ formatter: dummyFunc });
-
-          expect(spy).to.have.been.calledWith(dummyFunc);
-        });
-
-      });
-
-      describe('ValidateJS Pipeline without failing on an error', function () {
-
-        it('should not utilize eslint.failOnError when the failOnError options is "false"', function () {
-          var spy = esLint.failOnError;
-
-          spy.reset();
-
-          pipeline({
-            failOnError: false
-          });
-
-          expect(spy).to.have.not.been.called();
-        });
-
+        expect(spy).to.have.been.calledWith(dummyFunc);
       });
 
     });
+
+    describe('ValidateJS Pipeline without failing on an error', function () {
+
+      it('should not utilize eslint.failOnError when the failOnError options is "false"', function () {
+        var spy = esLint.failOnError;
+
+        spy.reset();
+
+        pipeline({
+          failOnError: false
+        });
+
+        expect(spy).to.have.not.been.called();
+      });
+
+    });
+
   });
 });

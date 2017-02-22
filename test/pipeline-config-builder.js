@@ -1,4 +1,5 @@
 'use strict';
+
 var chai = require('chai');
 var handyman = require('pipeline-handyman');
 var sinon = require('sinon');
@@ -49,6 +50,59 @@ describe('pipeline-config-builder', function () {
       expect(pipelineConfigBuilder()).to.be.an('object');
     });
 
+    describe('pipelineConfigBuilder with options', function () {
+      var sandbox = {};
+      var spy = {};
+      var fn;
+
+      beforeEach(function () {
+        sandbox = sinon.sandbox.create();
+        spy = sandbox.spy(handyman, 'log');
+      });
+
+      afterEach(function () {
+        sandbox.restore();
+      });
+
+      it('should test validateJS() with invalid options, number', function () {
+        fn = function () {
+          pipelineConfigBuilder(234);
+        };
+
+        fn.should.throw();
+        spy.should.have.been.calledWith('** Options not valid **');
+      });
+
+      it('should test validateJS() with invalid options, array', function () {
+        fn = function () {
+          pipelineConfigBuilder(['semi', 1]);
+        };
+
+        fn.should.throw();
+        spy.should.have.been.calledWith('** Options not valid **');
+      });
+
+      it('should test validateJS() with an invalid file path as an  option', function () {
+        fn = function () {
+          pipelineConfigBuilder('.eslintrc1');
+        };
+
+        fn.should.throw();
+      });
+
+      it('should accept custom options as filepath string', function () {
+        var customPath = './test/fixtures/.eslintrc3';
+
+        pipelineConfigBuilder(customPath);
+        spy.should.have.been.calledWith('Linting using custom path: ' + customPath);
+      });
+
+      it('should accept custom options as object', function () {
+        pipelineConfigBuilder({ 'rules': { 'semi': 2 } });
+        spy.should.have.been.calledWith('Parsing Options');
+      });
+    });
+
     describe('pipelineConfigBuilder without options', function () {
       var sandbox = {};
       var spy = {};
@@ -70,7 +124,6 @@ describe('pipeline-config-builder', function () {
       it('should should merge root path config', function () {
         var config = pipelineConfigBuilder();
 
-        // remove envs as it is added
         delete config.envs;
         expect(config).to.deep.equal(esLintFileConfig);
       });
