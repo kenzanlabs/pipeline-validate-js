@@ -64,7 +64,7 @@ describe('pipeline-config-builder', function () {
         sandbox.restore();
       });
 
-      it('should test validateJS() with invalid options, number', function () {
+      it('should test pipelineConfigBuilder() with invalid options, number', function () {
         fn = function () {
           pipelineConfigBuilder(234);
         };
@@ -73,7 +73,7 @@ describe('pipeline-config-builder', function () {
         spy.should.have.been.calledWith('** Options not valid **');
       });
 
-      it('should test validateJS() with invalid options, array', function () {
+      it('should test pipelineConfigBuilder() with invalid options, array', function () {
         fn = function () {
           pipelineConfigBuilder(['semi', 1]);
         };
@@ -82,7 +82,7 @@ describe('pipeline-config-builder', function () {
         spy.should.have.been.calledWith('** Options not valid **');
       });
 
-      it('should test validateJS() with an invalid file path as an  option', function () {
+      it('should test pipelineConfigBuilder() with an invalid file path as an  option', function () {
         fn = function () {
           pipelineConfigBuilder('.eslintrc1');
         };

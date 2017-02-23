@@ -48,7 +48,8 @@ function pipelineConfigBuilder(options) {
       config = handyman.mergeConfig(config, JSON.parse(customConfig));
 
     } catch (ex) {
-      // no op.
+      handyman.log(String(ex));
+
     }
 
   }
